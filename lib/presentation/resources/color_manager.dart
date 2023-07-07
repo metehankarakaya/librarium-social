@@ -16,4 +16,6 @@ class AppColor {
 
   static Color blue900 = Colors.blue.shade900;
 
+  static const Color bgColor = Color(0xFFf2f6fe); //ebeffc
+
 }
