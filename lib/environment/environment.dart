@@ -1,3 +1,3 @@
 class Environment {
-  String apiUrl = "192.xxx.x.x:8080";
+  String apiUrl = "http://192.xxx.x.xx:8080";
 }
