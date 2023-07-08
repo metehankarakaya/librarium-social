@@ -1,5 +1,3 @@
-import 'package:librarium/model/book.dart';
-
 class Author {
 
   Author({
@@ -20,7 +18,7 @@ class Author {
   int? age;
   DateTime? birthDate;
   DateTime? deathDate;
-  List<Book>? books;
+  List<String>? books; //book Id list
 
   factory Author.fromJson(Map<String, dynamic> json) => Author(
     id: json["id"],
@@ -30,7 +28,7 @@ class Author {
     age: json["age"],
     birthDate: json["birthDate"] == null ? null : DateTime.parse(json["birthDate"]),
     deathDate: json["deathDate"] == null ? null : DateTime.parse(json["deathDate"]),
-    books: json["books"] == null ? [] : List<Book>.from(json["books"]!.map((x) => Book.fromJson(x))),
+    books: json["books"] == null ? [] : List<String>.from(json["books"]!.map((x) => x)),
   );
 
   Map<String, dynamic> toJson() => {
@@ -41,7 +39,7 @@ class Author {
     "age": age,
     "birthDate": birthDate?.toIso8601String(),
     "deathDate": deathDate?.toIso8601String(),
-    "books": books == null ? [] : List<dynamic>.from(books!.map((x) => x.toJson())),
+    "books": books == null ? [] : List<dynamic>.from(books!.map((x) => x)),
   };
 
 }
