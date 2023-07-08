@@ -1,11 +1,12 @@
 import 'dart:convert';
 
-import 'package:http/http.dart' as http;
-import 'package:librarium/model/login.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'package:http/http.dart' as http;
+
 import '../../environment/environment.dart';
+import '../../model/login.dart';
 import '../../model/user.dart';
 
 class AuthenticationService {
