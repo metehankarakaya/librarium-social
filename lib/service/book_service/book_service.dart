@@ -7,33 +7,34 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
 import '../../environment/environment.dart';
-import '../../model/user.dart';
+import '../../model/book.dart';
 import '../main/main_service.dart';
 
-class UserService extends MainService {
+class BookService extends MainService {
 
   Logger logger = Logger();
 
-  static const String findUserDetailApi = "/private-app-api/find/user/detail";
+  static const String saveBookApi = "/private-app-api/save/book";
 
-  Future<User> findUserDetail() async {
-    String api = "${Environment().apiUrl}$findUserDetailApi";
+  Future<bool> saveBook(Book book) async {
+    String api = "${Environment().apiUrl}$saveBook";
 
     final SharedPreferences prefs = await getPrefs();
 
-    final response = await http.get(
+    final response = await http.post(
       Uri.parse(api),
       headers: <String, String>{
         "Content-Type": "application/json",
         "Accept": "application/json; charset=UTF-8",
-        HttpHeaders.authorizationHeader: prefs.getString("token").toString()
+        HttpHeaders.authorizationHeader: prefs.getString("token").toString(),
       },
+      body: jsonEncode(book.toJson())
     );
     if (response.statusCode == 200) {
-      return User.fromJson(jsonDecode(response.body));
+      return bool.tryParse(response.body) ?? false;
     }
     else {
-      return throw Exception("Service 'findUserDetail' failed with statusCode: ${response.statusCode}");
+      return throw Exception("Service 'saveBook' failed with statusCode: ${response.statusCode}");
     }
   }
 
