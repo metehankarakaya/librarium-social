@@ -55,8 +55,8 @@ class LoginViewModel extends MainViewModel {
     Navigator.pushReplacementNamed(context, AppRoute.registerRoute);
   }
 
-  goHome() {
-    Navigator.pushReplacementNamed(context, AppRoute.homeRoute);
+  goBottomBar() {
+    Navigator.pushReplacementNamed(context, AppRoute.bottomBarRoute);
   }
 
   Login login = Login();
@@ -70,7 +70,7 @@ class LoginViewModel extends MainViewModel {
     loggedUser = await _authenticationService.login(login);
     if (loggedUser != null) {
       logger.w(loggedUser!.toJson());
-      goHome();
+      goBottomBar();
       showSnackBar(context, AppString.loginSuccessful);
     }
     else {
