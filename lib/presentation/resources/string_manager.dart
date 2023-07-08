@@ -2,6 +2,8 @@ class AppString {
   static const String noRoute = "No Route!";
   static const String noRouteFound = "No Route Found!";
 
+  static const String appName = "Librarium";
+
   static const String register = "Register";
   static const String login = "Login";
   static const String haveAccount = "Do you already have an account?";
