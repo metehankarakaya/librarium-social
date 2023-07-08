@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:librarium/presentation/common/main_view_model.dart';
+import 'package:librarium/presentation/profile/profile_view.dart';
 import 'package:logger/logger.dart';
 
 import '../home/home_view.dart';
@@ -28,7 +29,7 @@ class BottomBarViewModel extends MainViewModel {
     const HomeView(),
     const Center(child: Text("ExploreView"),),
     const Center(child: Text("Add Book"),),
-    const Center(child: Text("ProfileView"),),
+    const ProfileView(),
   ];
 
   void onItemTapped(int index) {

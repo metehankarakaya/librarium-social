@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:librarium/presentation/profile/profile_view.dart';
 
 import '../presentation/bottom_bar/bottom_bar_view.dart';
 import '../presentation/home/home_view.dart';
@@ -11,6 +12,7 @@ class AppRoute {
   static const String loginRoute = "login";
   static const String homeRoute = "home";
   static const String bottomBarRoute = "bottomBar";
+  static const String profileRoute = "profile";
 
 }
 
@@ -25,6 +27,8 @@ class AppRouteGenerator {
         return MaterialPageRoute(builder: (_) => const HomeView());
       case AppRoute.bottomBarRoute:
         return MaterialPageRoute(builder: (_) => const BottomBarView());
+      case AppRoute.profileRoute:
+        return MaterialPageRoute(builder: (_) => const ProfileView());
       default:
         return unDefinedRoute();
     }
