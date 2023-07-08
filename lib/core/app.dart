@@ -17,7 +17,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       onGenerateRoute: AppRouteGenerator.getRoute,
-      initialRoute: isLoggedIn ? AppRoute.homeRoute : AppRoute.loginRoute,
+      initialRoute: isLoggedIn ? AppRoute.bottomBarRoute : AppRoute.loginRoute,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSwatch().copyWith(primary: AppColor.blue900),
       ),
