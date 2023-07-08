@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:librarium/core/route_manager.dart';
-import 'package:librarium/presentation/resources/color_manager.dart';
+
+import '../globalVariables.dart';
+import '../presentation/resources/color_manager.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -15,7 +17,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       onGenerateRoute: AppRouteGenerator.getRoute,
-      initialRoute: AppRoute.loginRoute,
+      initialRoute: isLoggedIn ? AppRoute.homeRoute : AppRoute.loginRoute,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSwatch().copyWith(primary: AppColor.blue900),
       ),
