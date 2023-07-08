@@ -29,4 +29,17 @@ class AppString {
   static const String gender = "gender";
   static const String aboutMe = "about me";
 
+  static const String editProfile = "Edit Profile";
+  static const String quotes = "Quotes";
+  static const String books = "Books";
+  static const String followings = "Followings";
+  static const String followers = "Followers";
+
+  static const String searchQuote = "Search Quote...";
+  static const String searchBook = "Search Book...";
+  static const String searchAuthor = "Search Author...";
+  static const String selectAuthor = "Select Author";
+  static const String searchPublisher = "Search Publisher...";
+  static const String selectPublisher = "Select Publisher";
+
 }
