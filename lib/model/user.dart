@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
+import 'package:librarium/model/quote.dart';
+
 class User {
 
   User({
@@ -17,6 +19,7 @@ class User {
     this.followers,
     this.favorites,
     this.addedBooks,
+    this.quotes,
     this.birthDate,
     this.createdDate,
     this.wallet,
@@ -37,6 +40,7 @@ class User {
   List<String>? followers; //user Id list
   List<String>? favorites; //book Id list
   List<String>? addedBooks; //book Id list
+  List<Quote>? quotes;
   DateTime? birthDate;
   DateTime? createdDate;
   double? wallet;
@@ -57,6 +61,7 @@ class User {
     followers: json["followers"] == null ? [] : List<String>.from(json["followers"]!.map((x) => x)),
     favorites: json["favorites"] == null ? [] : List<String>.from(json["favorites"]!.map((x) => x)),
     addedBooks: json["addedBooks"] == null ? [] : List<String>.from(json["addedBooks"]!.map((x) => x)),
+    quotes: json["quotes"] == null ? [] : List<Quote>.from(json["quotes"]!.map((x) => Quote.fromJson(x))),
     birthDate: json["birthDate"] == null ? null : DateTime.parse(json["birthDate"]),
     createdDate: json["createdDate"] == null ? null : DateTime.parse(json["createdDate"]),
     wallet: json["wallet"]?.toDouble(),
@@ -78,6 +83,7 @@ class User {
     "followers": followers == null ? [] : List<dynamic>.from(followers!.map((x) => x)),
     "favorites": favorites == null ? [] : List<dynamic>.from(favorites!.map((x) => x)),
     "addedBooks": addedBooks == null ? [] : List<dynamic>.from(addedBooks!.map((x) => x)),
+    "quotes": quotes == null ? [] : List<dynamic>.from(quotes!.map((x) => x.toJson())),
     "birthDate": birthDate?.toIso8601String(),
     "createdDate": createdDate?.toIso8601String(),
     "wallet": wallet,
