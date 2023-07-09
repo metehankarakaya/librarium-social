@@ -28,6 +28,12 @@ class AppString {
   static const String lastName = "last name";
   static const String gender = "gender";
   static const String aboutMe = "about me";
+  static const String age = "age";
+  static const String nationality = "nationality";
+  static const String birthDate = "birth date *";
+  static const String deathDate = "death date";
+  static const String addAuthorSuccessful = "The author has been successfully saved!";
+  static const String addAuthorFailed = "The author could not be saved successfully!";
 
   static const String addCoverImage = "Add Cover Image";
   static const String title = "title";
