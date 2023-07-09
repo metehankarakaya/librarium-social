@@ -3,10 +3,10 @@ import 'package:logger/logger.dart';
 import '../../injection.dart';
 import '../../model/user.dart';
 import '../../service/user_service/user_service.dart';
-import '../common/dialog/profile_dialog/addedBooksDialog.dart';
-import '../common/dialog/profile_dialog/followersDialog.dart';
-import '../common/dialog/profile_dialog/followingsDialog.dart';
-import '../common/dialog/profile_dialog/quotesDialog.dart';
+import '../common/dialog/profile_dialog/added_books_dialog.dart';
+import '../common/dialog/profile_dialog/followers_dialog.dart';
+import '../common/dialog/profile_dialog/followings_dialog.dart';
+import '../common/dialog/profile_dialog/quotes_dialog.dart';
 import '../common/main_view_model.dart';
 
 class ProfileViewModel extends MainViewModel {
