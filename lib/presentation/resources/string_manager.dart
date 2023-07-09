@@ -29,6 +29,17 @@ class AppString {
   static const String gender = "gender";
   static const String aboutMe = "about me";
 
+  static const String addCoverImage = "Add Cover Image";
+  static const String title = "title";
+  static const String description = "description";
+  static const String language = "language";
+  static const String isbn = "isbn";
+  static const String pageCount = "page count";
+  static const String price = "price";
+  static const String saveBook = "Save Book";
+  static const String saveBookSuccessful = "The book has been successfully saved!";
+  static const String saveBookFailed = "The book could not be saved successfully!";
+
   static const String editProfile = "Edit Profile";
   static const String quotes = "Quotes";
   static const String books = "Books";
