@@ -14,6 +14,7 @@ class DrawerViewModel extends MainViewModel {
   @override
   void start() {
     // TODO: implement start
+    readPrefs();
   }
 
   Logger logger = Logger();
@@ -21,6 +22,20 @@ class DrawerViewModel extends MainViewModel {
   listenToChanges() {
     notifyListeners();
   }
+
+  String? username;
+  String? firstName;
+  String? lastName;
+
+  readPrefs() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    username = prefs.getString("username");
+    firstName = prefs.getString("fName");
+    lastName = prefs.getString("lName");
+    notifyListeners();
+  }
+
+
 
   goLoginView() {
     Navigator.pushNamed(context, AppRoute.loginRoute);

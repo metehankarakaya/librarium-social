@@ -13,11 +13,43 @@ class _DrawerViewState extends State<DrawerView> {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<DrawerViewModel>.reactive(
-      viewModelBuilder: () => DrawerViewModel(context),
+      viewModelBuilder: () {
+        DrawerViewModel viewModel = DrawerViewModel(context);
+        viewModel.start();
+        return viewModel;
+      },
       builder: (context, viewModel, child) => Drawer(
         child: SingleChildScrollView(
           child: Column(
             children: [
+              DrawerHeader(
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: ListTile(
+                        title: Text(viewModel.firstName ?? ""),
+                      ),
+                    ),
+                    Expanded(
+                      child: ListTile(
+                        title: Text(viewModel.lastName ?? ""),
+                      ),
+                    ),
+                    Expanded(
+                      child: ListTile(
+                        title: Text(
+                          "@${viewModel.username}" ?? "",
+                          style: Theme.of(context).textTheme.headlineMedium,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              ListTile(
+                title: const Text("Add Author"),
+                onTap: () => viewModel.showLogOutDialog(),
+              ),
               ListTile(
                 title: const Text("LogOut"),
                 onTap: () => viewModel.showLogOutDialog(),
