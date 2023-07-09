@@ -17,7 +17,7 @@ class BookService extends MainService {
   static const String saveBookApi = "/private-app-api/save/book";
 
   Future<bool> saveBook(Book book) async {
-    String api = "${Environment().apiUrl}$saveBook";
+    String api = "${Environment().apiUrl}$saveBookApi";
 
     final SharedPreferences prefs = await getPrefs();
 
