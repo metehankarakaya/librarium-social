@@ -8,7 +8,7 @@ import '../../core/route_manager.dart';
 import '../../injection.dart';
 import '../../model/user.dart';
 import '../../service/authentication_service/authentication_service.dart';
-import '../common/bottom_sheet/showAvatarPickerBottomSheet.dart';
+import '../common/bottom_sheet/show_avatar_picker_bottom_sheet.dart';
 import '../common/main_view_model.dart';
 import '../common/snack_bar/show_snack_bar.dart';
 import '../resources/string_manager.dart';
