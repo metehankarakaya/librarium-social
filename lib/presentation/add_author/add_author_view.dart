@@ -70,7 +70,8 @@ class _AddAuthorViewModelState extends State<AddAuthorView> {
                   label: Text(AppString.birthDate),
                   prefixIcon: Icon(Icons.date_range)
                 ),
-                onTap: () => viewModel.pickBirthDate()
+                onTap: () => viewModel.pickBirthDate(),
+                readOnly: true,
               ),
               TextFormField(
                 controller: viewModel.deathDateController,
@@ -78,7 +79,8 @@ class _AddAuthorViewModelState extends State<AddAuthorView> {
                   label: Text(AppString.deathDate),
                   prefixIcon: Icon(Icons.date_range)
                 ),
-                onTap: () => viewModel.pickDeathDate()
+                onTap: () => viewModel.pickDeathDate(),
+                readOnly: true,
               ),
               const Expanded(
                 child: SizedBox(),
