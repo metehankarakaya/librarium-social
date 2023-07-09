@@ -26,7 +26,7 @@ class AddBookViewModel extends MainViewModel {
 
   Logger logger = Logger();
 
-  imChanging() {
+  listenToChanges() {
     notifyListeners();
   }
 

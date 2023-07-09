@@ -97,7 +97,7 @@ class _AddBookViewState extends State<AddBookView> {
                           Expanded(
                             child: TextFormField(
                               controller: viewModel.titleController,
-                              onChanged: (val) => viewModel.imChanging(),
+                              onChanged: (val) => viewModel.listenToChanges(),
                               decoration: const InputDecoration(
                                 label: Text(AppString.title),
                                 prefixIcon: Icon(Icons.keyboard_arrow_right_sharp)
@@ -116,7 +116,7 @@ class _AddBookViewState extends State<AddBookView> {
                               padding: const EdgeInsets.all(8.0),
                               child: TextFormField(
                                 controller: viewModel.languageController,
-                                onChanged: (val) => viewModel.imChanging(),
+                                onChanged: (val) => viewModel.listenToChanges(),
                                 inputFormatters: <TextInputFormatter>[
                                   FilteringTextInputFormatter.allow(RegExp(r'[a-zA-ZıIğĞüÜşŞöÖçÇ ]'))
                                 ],
@@ -132,7 +132,7 @@ class _AddBookViewState extends State<AddBookView> {
                               padding: const EdgeInsets.all(8.0),
                               child: TextFormField(
                                 controller: viewModel.isbnController,
-                                onChanged: (val) => viewModel.imChanging(),
+                                onChanged: (val) => viewModel.listenToChanges(),
                                 inputFormatters: <TextInputFormatter>[
                                   FilteringTextInputFormatter.digitsOnly
                                 ],
@@ -155,7 +155,7 @@ class _AddBookViewState extends State<AddBookView> {
                               padding: const EdgeInsets.all(8.0),
                               child: TextFormField(
                                 controller: viewModel.pageCountController,
-                                onChanged: (val) => viewModel.imChanging(),
+                                onChanged: (val) => viewModel.listenToChanges(),
                                 inputFormatters: <TextInputFormatter>[
                                   FilteringTextInputFormatter.digitsOnly
                                 ],
@@ -171,7 +171,7 @@ class _AddBookViewState extends State<AddBookView> {
                               padding: const EdgeInsets.all(8.0),
                               child: TextFormField(
                                 controller: viewModel.priceController,
-                                onChanged: (val) => viewModel.imChanging(),
+                                onChanged: (val) => viewModel.listenToChanges(),
                                 inputFormatters: <TextInputFormatter>[
                                   FilteringTextInputFormatter.allow(RegExp(r'[0-9\.]'))
                                 ],
@@ -192,7 +192,7 @@ class _AddBookViewState extends State<AddBookView> {
                           Expanded(
                             child: TextFormField(
                               controller: viewModel.descriptionController,
-                              onChanged: (val) => viewModel.imChanging(),
+                              onChanged: (val) => viewModel.listenToChanges(),
                               maxLength: 500,
                               maxLines: 10,
                               minLines: 1,
