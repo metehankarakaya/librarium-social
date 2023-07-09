@@ -35,7 +35,9 @@ class DrawerViewModel extends MainViewModel {
     notifyListeners();
   }
 
-
+  goAddAuthorView() {
+    Navigator.pushNamed(context, AppRoute.addAuthorRoute);
+  }
 
   goLoginView() {
     Navigator.pushNamed(context, AppRoute.loginRoute);

@@ -48,7 +48,7 @@ class _DrawerViewState extends State<DrawerView> {
               ),
               ListTile(
                 title: const Text("Add Author"),
-                onTap: () => viewModel.showLogOutDialog(),
+                onTap: () => viewModel.goAddAuthorView(),
               ),
               ListTile(
                 title: const Text("LogOut"),
