@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:librarium/presentation/drawer/drawer_view.dart';
 import 'package:librarium/presentation/home/home_view_model.dart';
+import 'package:librarium/presentation/resources/color_manager.dart';
 import 'package:stacked/stacked.dart';
 
 class HomeView extends StatefulWidget {
@@ -15,7 +17,12 @@ class _HomeViewState extends State<HomeView> {
     return ViewModelBuilder<HomeViewModel>.reactive(
       viewModelBuilder: () => HomeViewModel(context),
       builder: (context, viewModel, child) => Scaffold(
-
+        backgroundColor: AppColor.bgColor,
+        drawer: const DrawerView(),
+        appBar: AppBar(
+          title: const Text("Dashboard"),
+          centerTitle: true,
+        ),
       ),
     );
   }

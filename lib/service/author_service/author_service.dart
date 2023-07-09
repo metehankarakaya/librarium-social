@@ -14,7 +14,30 @@ class AuthorService extends MainService {
 
   Logger logger = Logger();
 
+  static const String addAuthorApi = "/private-app-api/add/author";
   static const String findAllAuthorsApi = "/private-app-api/find/all/authors";
+
+  Future<bool> addAuthor(Author author) async {
+    String api = "${Environment().apiUrl}$addAuthorApi";
+
+    final SharedPreferences prefs = await getPrefs();
+
+    final response = await http.post(
+      Uri.parse(api),
+      headers: <String, String>{
+        "Content-Type": "application/json",
+        "Accept": "application/json; charset=UTF-8",
+        HttpHeaders.authorizationHeader: prefs.getString("token").toString(),
+      },
+      body: jsonEncode(author.toJson())
+    );
+    if (response.statusCode == 200) {
+      return bool.tryParse(response.body) ?? false;
+    }
+    else {
+      return throw Exception("Service 'addAuthor' failed with statusCode: ${response.statusCode}");
+    }
+  }
 
   Future<List<Author>> findAllAuthors() async {
     String api = "${Environment().apiUrl}$findAllAuthorsApi";
@@ -37,7 +60,6 @@ class AuthorService extends MainService {
     else {
       return throw Exception("Service 'findAllAuthors' failed with statusCode: ${response.statusCode}");
     }
-
   }
 
 }

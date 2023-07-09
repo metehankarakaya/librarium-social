@@ -20,12 +20,12 @@ class AuthenticationService {
     String api = "${Environment().apiUrl}$registerApi";
 
     final response = await http.post(
-        Uri.parse(api),
-        headers: <String, String>{
-          "Content-Type": "application/json",
-          "Accept": "application/json; charset=UTF-8",
-        },
-        body: jsonEncode(user.toJson())
+      Uri.parse(api),
+      headers: <String, String>{
+        "Content-Type": "application/json",
+        "Accept": "application/json; charset=UTF-8",
+      },
+      body: jsonEncode(user.toJson())
     );
     if (response.statusCode == 200) {
       return bool.tryParse(response.body) ?? false;
@@ -39,12 +39,12 @@ class AuthenticationService {
     String api = "${Environment().apiUrl}$loginApi";
 
     final response = await http.post(
-        Uri.parse(api),
-        headers: <String, String>{
-          "Content-Type": "application/json",
-          "Accept": "application/json; charset=UTF-8",
-        },
-        body: jsonEncode(login.toJson())
+      Uri.parse(api),
+      headers: <String, String>{
+        "Content-Type": "application/json",
+        "Accept": "application/json; charset=UTF-8",
+      },
+      body: jsonEncode(login.toJson())
     );
     if (response.statusCode == 200) {
       if (response.body.isNotEmpty) {
