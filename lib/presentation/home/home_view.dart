@@ -28,6 +28,17 @@ class _HomeViewState extends State<HomeView> {
           title: const Text(AppString.dashboard),
           centerTitle: true,
         ),
+        body: RefreshIndicator(
+          onRefresh: viewModel.refreshDash,
+          child: ListView.builder(
+            itemCount: viewModel.quotes.length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                title: Text("${viewModel.quotes[index].content}"),
+              );
+            },
+          ),
+        ),
         floatingActionButton: FloatingActionButton(
           onPressed: () => viewModel.goAddQuoteView(),
           backgroundColor: AppColor.blue900,

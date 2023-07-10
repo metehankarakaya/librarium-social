@@ -27,6 +27,10 @@ class HomeViewModel extends MainViewModel {
     Navigator.pushNamed(context, AppRoute.addQuoteRoute);
   }
 
+  Future<void> refreshDash() async {
+    getAllQuotes();
+  }
+
   List<Quote> quotes = [];
 
   getAllQuotes() async {
