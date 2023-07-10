@@ -16,13 +16,22 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomeViewModel>.reactive(
-      viewModelBuilder: () => HomeViewModel(context),
+      viewModelBuilder: () {
+        HomeViewModel viewModel = HomeViewModel(context);
+        viewModel.start();
+        return viewModel;
+      },
       builder: (context, viewModel, child) => Scaffold(
         backgroundColor: AppColor.bgColor,
         drawer: const DrawerView(),
         appBar: AppBar(
           title: const Text(AppString.dashboard),
           centerTitle: true,
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => viewModel.goAddQuoteView(),
+          backgroundColor: AppColor.blue900,
+          child: const Icon(Icons.add),
         ),
       ),
     );
