@@ -81,6 +81,13 @@ class AppString {
   static const String searchPublisher = "Search Publisher...";
   static const String selectPublisher = "Select Publisher";
 
+  static const String notifications = "Notifications";
+  static const String appLock = "App Lock";
+  static const String changeUsername = "Change Username";
+  static const String changePassword = "Change Password";
+  static const String sendFeedback = "Send Feedback";
+  static const String deActiveAccount = "DeActive Account";
+
   static const String logOutSuccessful = "You have successfully logged out. See you again!";
   static const String confirmationTitle = "Confirm Logout";
   static const String confirmationAlert = "Are you sure you want to login?";

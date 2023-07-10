@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:librarium/core/route_manager.dart';
 import 'package:librarium/model/common_model/edit_about_me.dart';
 import 'package:librarium/presentation/common/dialog/profile_dialog/edit_about_me_dialog.dart';
 import 'package:logger/logger.dart';
@@ -41,7 +42,7 @@ class ProfileViewModel extends MainViewModel {
   }
 
   goSettingView() {
-
+    Navigator.pushNamed(context, AppRoute.settingsRoute);
   }
 
   showQuotesDialog() {

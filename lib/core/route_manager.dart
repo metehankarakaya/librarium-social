@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:librarium/presentation/add_author/add_author_view.dart';
 import 'package:librarium/presentation/add_book/add_book_view.dart';
 import 'package:librarium/presentation/profile/profile_view.dart';
+import 'package:librarium/presentation/settings/settings_view.dart';
 
 import '../presentation/bottom_bar/bottom_bar_view.dart';
 import '../presentation/home/home_view.dart';
@@ -17,6 +18,7 @@ class AppRoute {
   static const String profileRoute = "profile";
   static const String addBookRoute = "addBook";
   static const String addAuthorRoute = "addAuthor";
+  static const String settingsRoute = "settings";
 
 }
 
@@ -37,6 +39,8 @@ class AppRouteGenerator {
         return MaterialPageRoute(builder: (_) => const AddBookView());
       case AppRoute.addAuthorRoute:
         return MaterialPageRoute(builder: (_) => const AddAuthorView());
+      case AppRoute.settingsRoute:
+        return MaterialPageRoute(builder: (_) => const SettingsView());
       default:
         return unDefinedRoute();
     }
