@@ -74,6 +74,11 @@ class AppString {
   static const String followings = "Followings";
   static const String followers = "Followers";
 
+  static const String content = "Quote Content";
+  static const String addQuoteRule = "• Quote Content must not be empty.";
+  static const String contentAddSuccessful = "Quote successfully added.";
+  static const String contentAddFailed = "Could not add citation.";
+
   static const String searchQuote = "Search Quote...";
   static const String searchBook = "Search Book...";
   static const String searchAuthor = "Search Author...";
