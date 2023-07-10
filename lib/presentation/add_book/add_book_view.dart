@@ -24,7 +24,7 @@ class _AddBookViewState extends State<AddBookView> {
       },
       builder: (context, viewModel, child) => Scaffold(
         appBar: AppBar(
-          title: const Text("Add Book"),
+          title: const Text(AppString.addBook),
           centerTitle: true,
         ),
         body: Padding(

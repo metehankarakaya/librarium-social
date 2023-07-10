@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:librarium/presentation/drawer/drawer_view.dart';
 import 'package:librarium/presentation/home/home_view_model.dart';
 import 'package:librarium/presentation/resources/color_manager.dart';
+import 'package:librarium/presentation/resources/string_manager.dart';
 import 'package:stacked/stacked.dart';
 
 class HomeView extends StatefulWidget {
@@ -20,7 +21,7 @@ class _HomeViewState extends State<HomeView> {
         backgroundColor: AppColor.bgColor,
         drawer: const DrawerView(),
         appBar: AppBar(
-          title: const Text("Dashboard"),
+          title: const Text(AppString.dashboard),
           centerTitle: true,
         ),
       ),

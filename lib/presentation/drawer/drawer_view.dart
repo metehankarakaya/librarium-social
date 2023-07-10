@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:librarium/presentation/drawer/drawer_view_model.dart';
+import 'package:librarium/presentation/resources/string_manager.dart';
 import 'package:stacked/stacked.dart';
 
 class DrawerView extends StatefulWidget {
@@ -47,11 +48,11 @@ class _DrawerViewState extends State<DrawerView> {
                 ),
               ),
               ListTile(
-                title: const Text("Add Author"),
+                title: const Text(AppString.addAuthor),
                 onTap: () => viewModel.goAddAuthorView(),
               ),
               ListTile(
-                title: const Text("LogOut"),
+                title: const Text(AppString.logOut),
                 onTap: () => viewModel.showLogOutDialog(),
               ),
             ],

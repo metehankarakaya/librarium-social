@@ -70,7 +70,7 @@ class _ProfileViewState extends State<ProfileView> {
                     ProfileButtonView(
                       onPressed: () => viewModel.showQuotesDialog(),
                       content: AppString.quotes,
-                      count: "0", //${viewModel.user.quotes?.length}
+                      count: "${viewModel.user.quotes?.length}",
                     ),
                     ProfileButtonView(
                       onPressed: () => viewModel.showAddedBooksDialog(),

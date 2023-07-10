@@ -22,7 +22,7 @@ class _AddAuthorViewModelState extends State<AddAuthorView> {
       builder: (context, viewModel, child) => Scaffold(
         backgroundColor: AppColor.bgColor,
         appBar: AppBar(
-          title: const Text("Add Author"),
+          title: const Text(AppString.addAuthor),
           centerTitle: true,
         ),
         body: Padding(

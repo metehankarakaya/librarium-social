@@ -35,6 +35,11 @@ class AppString {
   static const String addAuthorSuccessful = "The author has been successfully saved!";
   static const String addAuthorFailed = "The author could not be saved successfully!";
 
+  static const String dashboard = "Dashboard";
+  static const String addBook = "Add Book";
+  static const String addAuthor = "Add Author";
+  static const String logOut = "Add Author";
+
   static const String addCoverImage = "Add Cover Image";
   static const String title = "title";
   static const String description = "description";
