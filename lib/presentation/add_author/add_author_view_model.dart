@@ -53,10 +53,10 @@ class AddAuthorViewModel extends MainViewModel {
 
   pickBirthDate() async {
     DateTime? birthDate = await showDatePicker(
-        context: context,
-        initialDate: DateTime.now(),
-        firstDate: DateTime(1500),
-        lastDate: DateTime.now()
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1500),
+      lastDate: DateTime.now()
     );
     if (birthDate != null) {
       birthDateController.text = DateFormat("dd-MM-yyyy").format(birthDate); //gg-aa-yyyy
@@ -67,10 +67,10 @@ class AddAuthorViewModel extends MainViewModel {
 
   pickDeathDate() async {
     DateTime? deathDate = await showDatePicker(
-        context: context,
-        initialDate: DateTime.now(),
-        firstDate: DateTime(1500),
-        lastDate: DateTime.now()
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1500),
+      lastDate: DateTime.now()
     );
     if (deathDate != null) {
       deathDateController.text = DateFormat("dd-MM-yyyy").format(deathDate); //gg-aa-yyyy
