@@ -93,9 +93,7 @@ class _ProfileViewState extends State<ProfileView> {
               const Divider(),
               ListTile(
                 trailing: IconButton(
-                  onPressed: () {
-
-                  },
+                  onPressed: () => viewModel.showEditAboutMeDialog(),
                   splashRadius: 20,
                   icon: Icon(
                     Icons.edit,

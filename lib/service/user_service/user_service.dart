@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:librarium/model/common_model/edit_about_me.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -15,6 +16,7 @@ class UserService extends MainService {
   Logger logger = Logger();
 
   static const String findUserDetailApi = "/private-app-api/find/user/detail";
+  static const String editAboutMeApi = "/private-app-api/edit/about/me";
 
   Future<User> findUserDetail() async {
     String api = "${Environment().apiUrl}$findUserDetailApi";
@@ -34,6 +36,28 @@ class UserService extends MainService {
     }
     else {
       return throw Exception("Service 'findUserDetail' failed with statusCode: ${response.statusCode}");
+    }
+  }
+
+  Future<bool> editAboutMe(EditAboutMe editAboutMe) async {
+    String api = "${Environment().apiUrl}$editAboutMeApi";
+
+    final SharedPreferences prefs = await getPrefs();
+
+    final response = await http.post(
+      Uri.parse(api),
+      headers: <String, String>{
+        "Content-Type": "application/json",
+        "Accept": "application/json; charset=UTF-8",
+        HttpHeaders.authorizationHeader: prefs.getString("token").toString()
+      },
+      body: jsonEncode(editAboutMe.toJson())
+    );
+    if (response.statusCode == 200) {
+      return bool.tryParse(response.body) ?? false;
+    }
+    else {
+      return throw Exception("Service 'editAboutMe' failed with statusCode: ${response.statusCode}");
     }
   }
 

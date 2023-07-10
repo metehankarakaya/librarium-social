@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:librarium/model/common_model/edit_about_me.dart';
+import 'package:librarium/presentation/common/dialog/profile_dialog/edit_about_me_dialog.dart';
 import 'package:logger/logger.dart';
 
 import '../../injection.dart';
@@ -8,6 +11,8 @@ import '../common/dialog/profile_dialog/followers_dialog.dart';
 import '../common/dialog/profile_dialog/followings_dialog.dart';
 import '../common/dialog/profile_dialog/quotes_dialog.dart';
 import '../common/main_view_model.dart';
+import '../common/snack_bar/show_snack_bar.dart';
+import '../resources/string_manager.dart';
 
 class ProfileViewModel extends MainViewModel {
   ProfileViewModel(super.context);
@@ -25,6 +30,8 @@ class ProfileViewModel extends MainViewModel {
   }
 
   final UserService _userService = locator<UserService>();
+
+  TextEditingController aboutMeController = TextEditingController();
 
   User user = User();
 
@@ -51,6 +58,33 @@ class ProfileViewModel extends MainViewModel {
 
   showFollowersDialog() {
     followersDialog(context, this);
+  }
+
+  bool aboutMeBool = false;
+
+  goBack() {
+    Navigator.pop(context);
+  }
+
+  showEditAboutMeDialog() {
+    editAboutMeDialog(context, this);
+  }
+
+  editAboutMe() async {
+    EditAboutMe editAboutMe = EditAboutMe();
+    editAboutMe.aboutMe = aboutMeController.text;
+    notifyListeners();
+    aboutMeBool = await _userService.editAboutMe(editAboutMe);
+    if (aboutMeBool) {
+      findUserDetail();
+      goBack();
+      showSnackBar(context, AppString.editAboutMeSuccessful);
+    }
+    else {
+      goBack();
+      showSnackBar(context, AppString.editAboutMeFailed);
+    }
+
   }
 
 }

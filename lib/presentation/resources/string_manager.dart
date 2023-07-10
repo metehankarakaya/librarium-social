@@ -66,6 +66,9 @@ class AppString {
   static const String authorSelectRule = "• Author must be selected.";
 
   static const String editProfile = "Edit Profile";
+  static const String editAboutMeSuccessful = "About Me successfully changed.";
+  static const String editAboutMeFailed = "Failed to successfully change About Me";
+
   static const String quotes = "Quotes";
   static const String books = "Books";
   static const String followings = "Followings";
