@@ -40,7 +40,7 @@ class DrawerViewModel extends MainViewModel {
   }
 
   goLoginView() {
-    Navigator.pushReplacementNamed(context, AppRoute.loginRoute);
+    Navigator.pushNamedAndRemoveUntil(context, AppRoute.loginRoute, (Route route) => false);
   }
 
   showLogOutDialog() {
