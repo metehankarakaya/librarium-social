@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:librarium/presentation/add_book/add_book_view_model.dart';
 import 'package:stacked/stacked.dart';
 
+import '../resources/color_manager.dart';
 import '../resources/string_manager.dart';
 
 class AddBookView extends StatefulWidget {
@@ -23,9 +24,17 @@ class _AddBookViewState extends State<AddBookView> {
         return viewModel;
       },
       builder: (context, viewModel, child) => Scaffold(
+        backgroundColor: AppColor.bgColor,
         appBar: AppBar(
           title: const Text(AppString.addBook),
           centerTitle: true,
+          actions: [
+            IconButton(
+              onPressed: () => viewModel.showAddBookRules(),
+              splashRadius: 20,
+              icon: const Icon(Icons.info_outline,),
+            ),
+          ],
         ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),

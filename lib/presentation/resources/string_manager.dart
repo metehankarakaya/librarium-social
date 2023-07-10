@@ -50,6 +50,14 @@ class AppString {
   static const String saveBook = "Save Book";
   static const String saveBookSuccessful = "The book has been successfully saved!";
   static const String saveBookFailed = "The book could not be saved successfully!";
+  static const String rules = "Rules";
+  static const String titleRule = "• Title must be at least 2, maximum 100 characters.";
+  static const String languageRule = "• Language must be at least 3, maximum 50 characters.";
+  static const String isbnRule = "• isbn must be 13 characters.";
+  static const String pageCountRule = "• Page Count must be maximum 6 characters.";
+  static const String priceRule = "• Price must be maximum 8 characters.";
+  static const String descriptionRule = "• Description must not be empty.";
+  static const String authorSelectRule = "• Author must be selected.";
 
   static const String editProfile = "Edit Profile";
   static const String quotes = "Quotes";

@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:librarium/presentation/common/dialog/show_add_book_rules_dialog.dart';
 import 'package:logger/logger.dart';
 
 import '../../injection.dart';
@@ -67,6 +68,10 @@ class AddBookViewModel extends MainViewModel {
   TextEditingController isbnController = TextEditingController();
   TextEditingController pageCountController = TextEditingController();
   TextEditingController priceController = TextEditingController();
+
+  showAddBookRules() {
+    showAddBookRulesDialog(context);
+  }
 
   final ImagePicker _picker = ImagePicker();
 

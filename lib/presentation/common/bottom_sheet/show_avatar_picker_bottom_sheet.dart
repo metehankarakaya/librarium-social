@@ -5,7 +5,7 @@ import '../../resources/color_manager.dart';
 import '../../resources/string_manager.dart';
 
 void showAvatarPickerBottomSheet(BuildContext context, RegisterViewModel viewModel) {
-  Size size = MediaQuery.of(context).size;
+  Size size = MediaQuery.sizeOf(context);
   showModalBottomSheet(
     context: context,
     backgroundColor: AppColor.transparent,
