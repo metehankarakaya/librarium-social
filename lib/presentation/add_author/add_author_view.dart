@@ -24,6 +24,13 @@ class _AddAuthorViewModelState extends State<AddAuthorView> {
         appBar: AppBar(
           title: const Text(AppString.addAuthor),
           centerTitle: true,
+          actions: [
+            IconButton(
+              onPressed: () => viewModel.showAddBookRules(),
+              splashRadius: 20,
+              icon: const Icon(Icons.info_outline,),
+            ),
+          ],
         ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),

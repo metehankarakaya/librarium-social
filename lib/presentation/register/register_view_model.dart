@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:librarium/presentation/common/dialog/rules_dialog/show_register_rules_dialog.dart';
 import 'package:logger/logger.dart';
 
 import '../../core/route_manager.dart';
@@ -79,6 +80,10 @@ class RegisterViewModel extends MainViewModel {
   TextEditingController genderController = TextEditingController();
   TextEditingController birthDateController = TextEditingController();
   TextEditingController aboutMeController = TextEditingController();
+
+  showRegisterRules() {
+    showRegisterRulesDialog(context);
+  }
 
   final ImagePicker _picker = ImagePicker();
 

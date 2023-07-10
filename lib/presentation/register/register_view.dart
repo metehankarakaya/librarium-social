@@ -27,6 +27,13 @@ class _RegisterViewState extends State<RegisterView> {
         appBar: AppBar(
           title: const Text(AppString.register),
           centerTitle: true,
+          actions: [
+            IconButton(
+              onPressed: () => viewModel.showRegisterRules(),
+              splashRadius: 20,
+              icon: const Icon(Icons.info_outline,),
+            ),
+          ],
         ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),

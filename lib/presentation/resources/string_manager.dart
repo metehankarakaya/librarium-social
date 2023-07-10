@@ -35,10 +35,16 @@ class AppString {
   static const String addAuthorSuccessful = "The author has been successfully saved!";
   static const String addAuthorFailed = "The author could not be saved successfully!";
 
+  static const String firstNameRule = "• First Name must be at least 3, maximum 20 characters.";
+  static const String lastNameRule = "• Last Name must be at least 2, maximum 30 characters.";
+  static const String ageRule = "• Age must be at least 2, maximum 3 characters.";
+  static const String nationalityRule = "• Nationality must be at least 2, maximum 30 characters.";
+  static const String birthDateRule = "• Birth Date must not be empty.";
+
   static const String dashboard = "Dashboard";
   static const String addBook = "Add Book";
   static const String addAuthor = "Add Author";
-  static const String logOut = "Add Author";
+  static const String logOut = "Log out";
 
   static const String addCoverImage = "Add Cover Image";
   static const String title = "title";
@@ -75,5 +81,14 @@ class AppString {
   static const String logOutSuccessful = "You have successfully logged out. See you again!";
   static const String confirmationTitle = "Confirm Logout";
   static const String confirmationAlert = "Are you sure you want to login?";
+
+  static const String usernameRule = "• Username must be at least 8, maximum 20 characters.";
+  static const String passwordRule = "• Password must contain at least one uppercase letter, special character and digit.";
+  static const String passwordMatchRule = "• The two passwords entered must match.";
+  static const String usernamePasswordRule = "• Username and Password must not be the same.";
+  static const String genderRule = "• Gender must be at least 3, maximum 20 characters.";
+  static const String aboutMeRule = "• About Me section must not be empty.";
+  static const String profilePhotoRule = "• Profile photo must not be empty.";
+
 
 }

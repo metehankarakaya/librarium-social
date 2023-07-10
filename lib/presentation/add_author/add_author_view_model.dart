@@ -6,6 +6,7 @@ import 'package:librarium/service/author_service/author_service.dart';
 import 'package:logger/logger.dart';
 
 import '../../injection.dart';
+import '../common/dialog/rules_dialog/show_add_author_rules_dialog.dart';
 import '../common/snack_bar/show_snack_bar.dart';
 import '../resources/string_manager.dart';
 
@@ -50,6 +51,10 @@ class AddAuthorViewModel extends MainViewModel {
   TextEditingController ageController = TextEditingController();
   TextEditingController birthDateController = TextEditingController();
   TextEditingController deathDateController = TextEditingController();
+
+  showAddBookRules() {
+    showAddAuthorRulesDialog(context);
+  }
 
   pickBirthDate() async {
     DateTime? birthDate = await showDatePicker(
