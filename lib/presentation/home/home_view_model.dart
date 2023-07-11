@@ -38,4 +38,16 @@ class HomeViewModel extends MainViewModel {
     notifyListeners();
   }
 
+  bool likeBoolean = false;
+  likeQuote({String quoteId = ""}) async {
+    likeBoolean = await _quoteService.likeQuote(quoteId);
+    notifyListeners();
+  }
+
+  bool dislikeBoolean = false;
+  dislikeQuote({String quoteId = ""}) async {
+    dislikeBoolean = await _quoteService.likeQuote(quoteId);
+    notifyListeners();
+  }
+
 }

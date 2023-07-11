@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:librarium/presentation/common/quote_card_view.dart';
 import 'package:librarium/presentation/drawer/drawer_view.dart';
 import 'package:librarium/presentation/home/home_view_model.dart';
 import 'package:librarium/presentation/resources/color_manager.dart';
@@ -33,8 +34,11 @@ class _HomeViewState extends State<HomeView> {
           child: ListView.builder(
             itemCount: viewModel.quotes.length,
             itemBuilder: (context, index) {
-              return ListTile(
-                title: Text("${viewModel.quotes[index].content}"),
+              return QuoteCard(
+                viewModel: viewModel,
+                quote: viewModel.quotes[index],
+                onLike: () => viewModel.likeQuote(),
+                onDislike: () => viewModel.dislikeQuote(),
               );
             },
           ),

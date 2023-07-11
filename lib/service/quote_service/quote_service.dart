@@ -16,6 +16,8 @@ class QuoteService extends MainService {
 
   static const String addQuoteApi = "/private-app-api/add/quote";
   static const String findAllQuotesApi = "/private-app-api/find/all/quotes";
+  static const String likeQuoteApi = "/private-app-api/like/quote/";
+  static const String dislikeQuoteApi = "/private-app-api/dislike/quote/";
 
   Future<bool> addQuote(Quote quote) async {
     String api = "${Environment().apiUrl}$addQuoteApi";
@@ -59,6 +61,48 @@ class QuoteService extends MainService {
     }
     else {
       return throw Exception("Service 'findAllQuotes' failed with statusCode: ${response.statusCode}");
+    }
+  }
+
+  Future<bool> likeQuote(String quoteId) async {
+    String api = "${Environment().apiUrl}$likeQuoteApi$quoteId";
+
+    final SharedPreferences prefs = await getPrefs();
+
+    final response = await http.get(
+      Uri.parse(api),
+      headers: <String, String>{
+        "Content-Type": "application/json",
+        "Accept": "application/json; charset=UTF-8",
+        HttpHeaders.authorizationHeader: prefs.getString("token").toString()
+      },
+    );
+    if (response.statusCode == 200) {
+      return bool.tryParse(response.body) ?? false;
+    }
+    else {
+      return throw Exception("Service 'likeQuote' failed with statusCode: ${response.statusCode}");
+    }
+  }
+
+  Future<bool> dislikeQuote(String quoteId) async {
+    String api = "${Environment().apiUrl}$dislikeQuoteApi$quoteId";
+
+    final SharedPreferences prefs = await getPrefs();
+
+    final response = await http.get(
+      Uri.parse(api),
+      headers: <String, String>{
+        "Content-Type": "application/json",
+        "Accept": "application/json; charset=UTF-8",
+        HttpHeaders.authorizationHeader: prefs.getString("token").toString()
+      },
+    );
+    if (response.statusCode == 200) {
+      return bool.tryParse(response.body) ?? false;
+    }
+    else {
+      return throw Exception("Service 'dislikeQuote' failed with statusCode: ${response.statusCode}");
     }
   }
 
