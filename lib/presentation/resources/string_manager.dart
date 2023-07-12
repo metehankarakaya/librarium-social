@@ -97,7 +97,7 @@ class AppString {
 
   static const String logOutSuccessful = "You have successfully logged out. See you again!";
   static const String confirmationTitle = "Confirm Logout";
-  static const String confirmationAlert = "Are you sure you want to login?";
+  static const String confirmationAlert = "Are you sure you want to log out?";
 
   static const String usernameRule = "• Username must be at least 8, maximum 20 characters.";
   static const String passwordRule = "• Password must contain at least one uppercase letter, special character and digit.";
