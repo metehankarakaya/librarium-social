@@ -160,12 +160,12 @@ class AddBookViewModel extends MainViewModel {
 
   clearForm() {
     coverImage = null;
-    titleController.text = "";
-    languageController.text = "";
-    isbnController.text = "";
-    pageCountController.text = "";
-    priceController.text = "";
-    descriptionController.text = "";
+    titleController.clear();
+    languageController.clear();
+    isbnController.clear();
+    pageCountController.clear();
+    priceController.clear();
+    descriptionController.clear();
     notifyListeners();
   }
 

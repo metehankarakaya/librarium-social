@@ -106,12 +106,12 @@ class AddAuthorViewModel extends MainViewModel {
   }
 
   clearForm() {
-    firstNameController.text = "";
-    lastNameController.text = "";
-    ageController.text = "";
-    nationalityController.text = "";
-    birthDateController.text = "";
-    deathDateController.text = "";
+    firstNameController.clear();
+    lastNameController.clear();
+    ageController.clear();
+    nationalityController.clear();
+    birthDateController.clear();
+    deathDateController.clear();
     notifyListeners();
   }
 

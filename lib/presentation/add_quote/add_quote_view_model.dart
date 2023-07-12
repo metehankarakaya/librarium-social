@@ -56,8 +56,8 @@ class AddQuoteViewModel extends MainViewModel {
   }
 
   clearForm() {
-    contentController.text = "";
-    pageNumberController.text = "";
+    contentController.clear();
+    pageNumberController.clear();
     notifyListeners();
   }
 
