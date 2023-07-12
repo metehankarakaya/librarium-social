@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:librarium/core/route_manager.dart';
 import 'package:librarium/injection.dart';
+import 'package:librarium/model/common_model/other_user.dart';
 import 'package:librarium/model/quote.dart';
 import 'package:librarium/presentation/common/main_view_model.dart';
 import 'package:librarium/service/quote_service/quote_service.dart';
+import 'package:librarium/service/user_service/user_service.dart';
 import 'package:logger/logger.dart';
 
 class HomeViewModel extends MainViewModel {
@@ -21,6 +23,7 @@ class HomeViewModel extends MainViewModel {
     notifyListeners();
   }
 
+  final UserService _userService = locator<UserService>();
   final QuoteService _quoteService = locator<QuoteService>();
 
   goAddQuoteView() {
@@ -36,6 +39,12 @@ class HomeViewModel extends MainViewModel {
   getAllQuotes() async {
     quotes = await _quoteService.findAllQuotes();
     notifyListeners();
+  }
+
+  OtherUser otherUser = OtherUser();
+
+  goOtherProfile({String otherUserId = ""}) async {
+    navigateOtherUserProfileWithParam(context, otherUserId);
   }
 
   bool likeBoolean = false;

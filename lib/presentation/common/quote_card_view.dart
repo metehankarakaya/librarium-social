@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:librarium/model/quote.dart';
 import 'package:librarium/presentation/home/home_view_model.dart';
-import 'package:librarium/presentation/resources/asset_manager.dart';
 
 class QuoteCard extends StatelessWidget {
   final HomeViewModel viewModel;
   final Quote quote;
   final VoidCallback onLike;
   final VoidCallback onDislike;
+  final VoidCallback goOtherProfile;
 
   const QuoteCard({
     Key? key,
@@ -15,6 +15,7 @@ class QuoteCard extends StatelessWidget {
     required this.quote,
     required this.onLike,
     required this.onDislike,
+    required this.goOtherProfile,
   }) : super(key: key);
 
   @override
@@ -30,9 +31,12 @@ class QuoteCard extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(left: 8.0, top: 8.0),
-                  child: CircleAvatar(
-                    radius: 25,
-                    backgroundImage: MemoryImage(quote.user!.avatar!)
+                  child: GestureDetector(
+                    onTap: () => viewModel.goOtherProfile(otherUserId: quote.user?.id ?? ""),
+                    child: CircleAvatar(
+                      radius: 25,
+                      backgroundImage: MemoryImage(quote.user!.avatar!)
+                    ),
                   ),
                 ),
                 Expanded(

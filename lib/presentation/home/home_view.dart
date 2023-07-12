@@ -54,6 +54,7 @@ class _HomeViewState extends State<HomeView> {
                   quote: viewModel.quotes[index],
                   onLike: () => viewModel.likeQuote(),
                   onDislike: () => viewModel.dislikeQuote(),
+                  goOtherProfile: () => viewModel.goOtherProfile(),
                 );
               },
             ),
