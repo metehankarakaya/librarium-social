@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:librarium/presentation/add_book/add_book_view.dart';
 import 'package:librarium/presentation/common/main_view_model.dart';
+import 'package:librarium/presentation/explore/explore_view.dart';
 import 'package:librarium/presentation/profile/profile_view.dart';
 import 'package:logger/logger.dart';
 
@@ -28,7 +29,7 @@ class BottomBarViewModel extends MainViewModel {
 
   final List<Widget> viewList = <Widget>[
     const HomeView(),
-    const Center(child: Text("ExploreView"),),
+    const ExploreView(),
     const AddBookView(),
     const ProfileView(),
   ];
