@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:librarium/model/quote.dart';
 import 'package:librarium/presentation/home/home_view_model.dart';
+import 'package:librarium/presentation/resources/asset_manager.dart';
 
 class QuoteCard extends StatelessWidget {
   final HomeViewModel viewModel;
@@ -18,6 +19,7 @@ class QuoteCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.sizeOf(context);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Card(
@@ -26,12 +28,20 @@ class QuoteCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                Container(
-
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0, top: 8.0),
+                  child: CircleAvatar(
+                    radius: 25,
+                    backgroundImage: MemoryImage(quote.user!.avatar!)
+                  ),
                 ),
                 Expanded(
                   child: ListTile(
-                    title: const Text("Binboğalar efsanesi", textAlign: TextAlign.center,),
+                    title: Text("@${quote.user!.username}", textAlign: TextAlign.center,),
+                    subtitle: Text(
+                      "${quote.user!.firstName} ${quote.user!.lastName}",
+                      textAlign: TextAlign.center,
+                    ),
                     trailing: IconButton(
                       onPressed: () {
 
@@ -43,6 +53,7 @@ class QuoteCard extends StatelessWidget {
                 )
               ],
             ),
+            const Divider(),
             ListTile(
               title: Text(
                 "${quote.content}",
