@@ -23,7 +23,7 @@ class _HomeViewState extends State<HomeView> {
         return viewModel;
       },
       builder: (context, viewModel, child) => Scaffold(
-        backgroundColor: AppColor.bgColor,
+        backgroundColor: const Color(0xFFfff9eb),
         drawer: const DrawerView(),
         appBar: AppBar(
           title: const Text(AppString.dashboard),
