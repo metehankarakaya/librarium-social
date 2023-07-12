@@ -41,16 +41,22 @@ class _HomeViewState extends State<HomeView> {
         ),
         body: RefreshIndicator(
           onRefresh: viewModel.refreshDash,
-          child: ListView.builder(
-            itemCount: viewModel.quotes.length,
-            itemBuilder: (context, index) {
-              return QuoteCard(
-                viewModel: viewModel,
-                quote: viewModel.quotes[index],
-                onLike: () => viewModel.likeQuote(),
-                onDislike: () => viewModel.dislikeQuote(),
-              );
+          child: NotificationListener<OverscrollIndicatorNotification>(
+            onNotification: (overScroll) {
+              overScroll.disallowIndicator();
+              return true;
             },
+            child: ListView.builder(
+              itemCount: viewModel.quotes.length,
+              itemBuilder: (context, index) {
+                return QuoteCard(
+                  viewModel: viewModel,
+                  quote: viewModel.quotes[index],
+                  onLike: () => viewModel.likeQuote(),
+                  onDislike: () => viewModel.dislikeQuote(),
+                );
+              },
+            ),
           ),
         ),
         floatingActionButton: FloatingActionButton(
