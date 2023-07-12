@@ -74,6 +74,8 @@ class AppString {
   static const String followings = "Followings";
   static const String followers = "Followers";
 
+  static const String addQuote = "Add Quote";
+  static const String send = "Send";
   static const String content = "Quote Content";
   static const String addQuoteRule = "• Quote Content must not be empty.";
   static const String contentAddSuccessful = "Quote successfully added.";

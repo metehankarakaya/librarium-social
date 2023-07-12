@@ -21,7 +21,7 @@ class _AddQuoteViewState extends State<AddQuoteView> {
       builder: (context, viewModel, child) => Scaffold(
         backgroundColor: AppColor.bgColor,
         appBar: AppBar(
-          title: const Text("Add Quote"),
+          title: const Text(AppString.addQuote),
           centerTitle: true,
           actions: [
             IconButton(
@@ -55,7 +55,7 @@ class _AddQuoteViewState extends State<AddQuoteView> {
                   style: ElevatedButton.styleFrom(
                     fixedSize: Size(size.width/2, size.height/16),
                   ),
-                  child: const Text(AppString.register),
+                  child: const Text(AppString.send),
                 ),
               ),
             ],
