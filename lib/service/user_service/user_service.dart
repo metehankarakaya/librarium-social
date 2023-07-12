@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:librarium/model/common_model/edit_about_me.dart';
+import 'package:librarium/model/common_model/other_user.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -15,8 +16,31 @@ class UserService extends MainService {
 
   Logger logger = Logger();
 
+  static const String findOtherUserDetailApi = "/private-app-api/find/other/user/detail/";
   static const String findUserDetailApi = "/private-app-api/find/user/detail";
   static const String editAboutMeApi = "/private-app-api/edit/about/me";
+
+  Future<OtherUser> findOtherUserDetail(String otherUserId) async {
+    String api = "${Environment().apiUrl}$findOtherUserDetailApi$otherUserId";
+
+    final SharedPreferences prefs = await getPrefs();
+
+    final response = await http.get(
+      Uri.parse(api),
+      headers: <String, String>{
+        "Content-Type": "application/json",
+        "Accept": "application/json; charset=UTF-8",
+        HttpHeaders.authorizationHeader: prefs.getString("token").toString()
+      },
+    );
+    if (response.statusCode == 200) {
+      return OtherUser.fromJson(jsonDecode(response.body));
+    }
+    else {
+      return throw Exception("Service 'findOtherUserDetail' failed with statusCode: ${response.statusCode}");
+    }
+  }
+
 
   Future<User> findUserDetail() async {
     String api = "${Environment().apiUrl}$findUserDetailApi";
