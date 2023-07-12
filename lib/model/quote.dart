@@ -23,7 +23,7 @@ class Quote {
   factory Quote.fromJson(Map<String, dynamic> json) => Quote(
     id: json["id"],
     content: json["content"],
-    user: json["User"] == null ? null : User.fromJson(json["User"]),
+    user: json["user"] == null ? null : User.fromJson(json["user"]),
     likeCount: json["likeCount"],
     dislikeCount: json["dislikeCount"],
     createdDate: json["createdDate"] == null ? null : DateTime.parse(json["createdDate"]),
@@ -33,7 +33,7 @@ class Quote {
   Map<String, dynamic> toJson() => {
     "id": id,
     "content": content,
-    "User": user?.toJson(),
+    "user": user?.toJson(),
     "likeCount": likeCount,
     "dislikeCount": dislikeCount,
     "createdDate": createdDate?.toIso8601String(),
