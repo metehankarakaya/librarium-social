@@ -95,7 +95,7 @@ class _RegisterViewState extends State<RegisterView> {
                       controller: viewModel.firstNameController,
                       onChanged: (val) => viewModel.listenToChanges(),
                       inputFormatters: [
-                        FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]")),
+                        FilteringTextInputFormatter.allow(RegExp(r'[a-zA-ZıIğĞüÜşŞöÖçÇ ]'))
                       ],
                       decoration: const InputDecoration(
                         label: Text(AppString.firstName),
@@ -106,7 +106,7 @@ class _RegisterViewState extends State<RegisterView> {
                       controller: viewModel.lastNameController,
                       onChanged: (val) => viewModel.listenToChanges(),
                       inputFormatters: [
-                        FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]")),
+                        FilteringTextInputFormatter.allow(RegExp(r'[a-zA-ZıIğĞüÜşŞöÖçÇ ]'))
                       ],
                       decoration: const InputDecoration(
                         label: Text(AppString.lastName),
@@ -117,7 +117,7 @@ class _RegisterViewState extends State<RegisterView> {
                       controller: viewModel.genderController,
                       onChanged: (val) => viewModel.listenToChanges(),
                       inputFormatters: [
-                        FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]")),
+                        FilteringTextInputFormatter.allow(RegExp(r'[a-zA-ZıIğĞüÜşŞöÖçÇ ]'))
                       ],
                       decoration: const InputDecoration(
                         label: Text(AppString.gender),
