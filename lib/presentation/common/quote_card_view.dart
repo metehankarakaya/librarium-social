@@ -41,7 +41,10 @@ class QuoteCard extends StatelessWidget {
                 ),
                 Expanded(
                   child: ListTile(
-                    title: Text("@${quote.user!.username}", textAlign: TextAlign.center,),
+                    title: Text(
+                      "@${quote.user!.username}", textAlign: TextAlign.center,
+                      style: const TextStyle(fontStyle: FontStyle.italic),
+                    ),
                     subtitle: Text(
                       "${quote.user!.firstName} ${quote.user!.lastName}",
                       textAlign: TextAlign.center,
