@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:librarium/presentation/common/quote_card_view.dart';
 import 'package:librarium/presentation/drawer/drawer_view.dart';
 import 'package:librarium/presentation/home/home_view_model.dart';
@@ -28,6 +29,15 @@ class _HomeViewState extends State<HomeView> {
         appBar: AppBar(
           title: const Text(AppString.dashboard),
           centerTitle: true,
+          actions: [
+            IconButton(
+              onPressed: () {
+
+              },
+              splashRadius: 20,
+              icon: const Icon(Icons.message_sharp),
+            )
+          ],
         ),
         body: RefreshIndicator(
           onRefresh: viewModel.refreshDash,
