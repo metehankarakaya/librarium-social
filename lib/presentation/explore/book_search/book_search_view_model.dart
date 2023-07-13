@@ -5,6 +5,7 @@ import 'package:librarium/service/book_service/book_service.dart';
 import 'package:logger/logger.dart';
 
 import '../../../injection.dart';
+import '../../common/dialog/rules_dialog/show_search_keyword_rules_dialog.dart';
 
 class BookSearchViewModel extends MainViewModel {
   BookSearchViewModel(super.context);
@@ -24,6 +25,16 @@ class BookSearchViewModel extends MainViewModel {
   final BookService _bookService = locator<BookService>();
 
   TextEditingController bookTitleController = TextEditingController();
+
+  showSearchBookRules() {
+    showSearchKeywordRulesDialog(context);
+  }
+
+  List<Book> foundBooks = [];
+  findBooksByKeyword(String keyword) async {
+    foundBooks = await _bookService.findBooksByKeyword(keyword);
+    notifyListeners();
+  }
 
   List<Book> randomBooks = [];
 

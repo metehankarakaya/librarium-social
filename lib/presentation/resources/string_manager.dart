@@ -35,6 +35,8 @@ class AppString {
   static const String addAuthorSuccessful = "The author has been successfully saved!";
   static const String addAuthorFailed = "The author could not be saved successfully!";
 
+  static const String searchKeywordRule = "• The keyword must be at least 3 and at most 20 characters.";
+
   static const String firstNameRule = "• First Name must be at least 3, maximum 20 characters.";
   static const String lastNameRule = "• Last Name must be at least 2, maximum 30 characters.";
   static const String ageRule = "• Age must be at least 2, maximum 3 characters.";
