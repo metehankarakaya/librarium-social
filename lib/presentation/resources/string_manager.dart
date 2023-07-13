@@ -107,5 +107,7 @@ class AppString {
   static const String aboutMeRule = "• About Me section must not be empty.";
   static const String profilePhotoRule = "• Profile photo must not be empty.";
 
+  static const String searchUser = "Search User...";
+  static const String randomUser = "Random User";
 
 }
