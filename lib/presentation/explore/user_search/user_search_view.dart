@@ -28,10 +28,19 @@ class _UserSearchViewState extends State<UserSearchView> {
           children: [
             TextFormField(
               onChanged: (val) {},
-              onFieldSubmitted: (keyword) => viewModel.findUsersByKeyword(keyword),
-              decoration: const InputDecoration(
+              onFieldSubmitted: (keyword) {
+                if (keyword.length >= 3 && keyword.length <= 20) {
+                  viewModel.findUsersByKeyword(keyword);
+                }
+              },
+              decoration: InputDecoration(
                 hintText: AppString.searchUser,
-                prefixIcon: Icon(Icons.search),
+                prefixIcon: const Icon(Icons.search),
+                suffixIcon: IconButton(
+                  onPressed: () => viewModel.showSearchUserRules(),
+                  splashRadius: 20,
+                  icon: Icon(Icons.info_outline, color: AppColor.blue900,),
+                )
               ),
             ),
             Expanded(

@@ -6,6 +6,7 @@ import 'package:logger/logger.dart';
 
 import '../../../core/route_manager.dart';
 import '../../../injection.dart';
+import '../../common/dialog/rules_dialog/show_search_keyword_rules_dialog.dart';
 
 class UserSearchViewModel extends MainViewModel {
   UserSearchViewModel(super.context);
@@ -25,6 +26,10 @@ class UserSearchViewModel extends MainViewModel {
   final UserService _userService = locator<UserService>();
 
   TextEditingController usernameController = TextEditingController();
+
+  showSearchUserRules() {
+    showSearchKeywordRulesDialog(context);
+  }
 
   List<User> foundUsers = [];
   findUsersByKeyword(String keyword) async {
