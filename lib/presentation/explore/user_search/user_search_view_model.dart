@@ -26,6 +26,12 @@ class UserSearchViewModel extends MainViewModel {
 
   TextEditingController usernameController = TextEditingController();
 
+  List<User> foundUsers = [];
+  findUsersByKeyword(String keyword) async {
+    foundUsers = await _userService.findUsersByKeyword(keyword);
+    notifyListeners();
+  }
+
   List<User> randomUsers = [];
 
   findRandomUsers() async {

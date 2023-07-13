@@ -20,6 +20,7 @@ class UserService extends MainService {
   static const String findUserDetailApi = "/private-app-api/find/user/detail";
   static const String editAboutMeApi = "/private-app-api/edit/about/me";
   static const String findRandomUsersApi = "/private-app-api/find/random/users";
+  static const String findUsersByKeywordApi = "/private-app-api/find/users/by/keyword/";
 
   Future<OtherUser> findOtherUserDetail(String otherUserId) async {
     String api = "${Environment().apiUrl}$findOtherUserDetailApi$otherUserId";
@@ -106,6 +107,29 @@ class UserService extends MainService {
     }
     else {
       return throw Exception("Service 'findRandomUsers' failed with statusCode: ${response.statusCode}");
+    }
+  }
+
+  Future<List<User>> findUsersByKeyword(String keyword) async {
+    String api = "${Environment().apiUrl}$findUsersByKeywordApi$keyword";
+
+    final SharedPreferences prefs = await getPrefs();
+
+    final response = await http.get(
+      Uri.parse(api),
+      headers: <String, String>{
+        "Content-Type": "application/json",
+        "Accept": "application/json; charset=UTF-8",
+        HttpHeaders.authorizationHeader: prefs.getString("token").toString()
+      },
+    );
+    if (response.statusCode == 200) {
+      final jsonData = jsonDecode(response.body);
+      final List<User> foundUserList = List<User>.from(jsonData.map((x) => User.fromJson(x)));
+      return foundUserList;
+    }
+    else {
+      return throw Exception("Service 'findUsersByKeyword' failed with statusCode: ${response.statusCode}");
     }
   }
 

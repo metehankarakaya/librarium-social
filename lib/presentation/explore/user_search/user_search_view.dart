@@ -28,11 +28,75 @@ class _UserSearchViewState extends State<UserSearchView> {
           children: [
             TextFormField(
               onChanged: (val) {},
+              onFieldSubmitted: (keyword) => viewModel.findUsersByKeyword(keyword),
               decoration: const InputDecoration(
                 hintText: AppString.searchUser,
                 prefixIcon: Icon(Icons.search),
               ),
             ),
+            Expanded(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: Text("Results: ${viewModel.foundUsers.length}",),
+                    ),
+                  ),
+                  Expanded(
+                    child: NotificationListener<OverscrollIndicatorNotification>(
+                      onNotification: (overScroll) {
+                        overScroll.disallowIndicator();
+                        return true;
+                      },
+                      child: ListView.builder(
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: viewModel.foundUsers.length,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            leading: Container(
+                              width: 50.0,
+                              height: 50.0,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black45,
+                                    offset: Offset(0, 2),
+                                    blurRadius: 6.0,
+                                  ),
+                                ],
+                              ),
+                              child: CircleAvatar(
+                                child: ClipOval(
+                                  child: Image(
+                                    height: 50.0,
+                                    width: 50.0,
+                                    image: MemoryImage(viewModel.foundUsers[index].avatar!),
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            title: Text(
+                              "${viewModel.foundUsers[index].username}",
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            subtitle: Text(
+                              "${viewModel.foundUsers[index].firstName} ${viewModel.foundUsers[index].lastName}"
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const Divider(),
             Align(
               alignment: Alignment.centerLeft,
               child: Padding(
