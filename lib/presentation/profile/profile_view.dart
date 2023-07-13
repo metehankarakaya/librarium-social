@@ -93,7 +93,8 @@ class _ProfileViewState extends State<ProfileView> {
               const Divider(),
               ListTile(
                 trailing: IconButton(
-                  onPressed: () => viewModel.showEditAboutMeDialog(),
+                  //onPressed: () => viewModel.showEditAboutMeDialog(),
+                  onPressed: () => viewModel.changeReadOnly(),
                   splashRadius: 20,
                   icon: Icon(
                     Icons.edit,
@@ -113,12 +114,28 @@ class _ProfileViewState extends State<ProfileView> {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: ListTile(
-                  title: Text(
-                    viewModel.user.aboutMe ?? "",
-                    style: const TextStyle(fontSize: 18),
+                child: TextFormField(
+                  controller: viewModel.aboutMeController,
+                  maxLength: 500,
+                  maxLines: 7,
+                  readOnly: viewModel.readOnlyBool,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: AppColor.blue900
+                      ),
+                    ),
                   ),
+                )
+              ),
+              ElevatedButton(
+                onPressed: viewModel.readOnlyBool
+                  ? null
+                  : () => viewModel.editAboutMe(),
+                style: ElevatedButton.styleFrom(
+                  fixedSize: Size(size.width/2, size.height/16),
                 ),
+                child: const Text("Edit About Me"),
               )
             ],
           ),

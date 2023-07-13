@@ -38,6 +38,7 @@ class ProfileViewModel extends MainViewModel {
 
   findUserDetail() async {
     user = await _userService.findUserDetail();
+    aboutMeController.text = user.aboutMe ?? "";
     notifyListeners();
   }
 
@@ -67,8 +68,15 @@ class ProfileViewModel extends MainViewModel {
     Navigator.pop(context);
   }
 
-  showEditAboutMeDialog() {
+  showEditAboutMeDialog() { //deprecated
     editAboutMeDialog(context, this);
+  }
+
+  bool readOnlyBool = true;
+
+  changeReadOnly() { //'showEditAboutMeDialog' alternative
+    readOnlyBool = !readOnlyBool;
+    notifyListeners();
   }
 
   editAboutMe() async {
@@ -78,7 +86,7 @@ class ProfileViewModel extends MainViewModel {
     aboutMeBool = await _userService.editAboutMe(editAboutMe);
     if (aboutMeBool) {
       findUserDetail();
-      goBack();
+      changeReadOnly(); //if you want to use 'showEditAboutMeDialog', goBack(); this part
       showSnackBar(context, AppString.editAboutMeSuccessful);
     }
     else {
