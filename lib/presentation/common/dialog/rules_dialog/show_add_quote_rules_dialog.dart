@@ -20,7 +20,7 @@ void showAddQuoteRulesDialog(BuildContext context) {
             ),
             children: const [
               ListTile(
-                title: Text(AppString.firstNameRule),
+                title: Text(AppString.addQuoteRule),
               ),
             ],
           );
