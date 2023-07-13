@@ -36,52 +36,42 @@ class _UserSearchViewState extends State<UserSearchView> {
             Align(
               alignment: Alignment.centerLeft,
               child: Padding(
-                padding: const EdgeInsets.only(top: 4.0, left: 4.0),
+                padding: const EdgeInsets.only(top: 4.0, left: 8.0, bottom: 4.0),
                 child: Text(
-                  AppString.randomUser,
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
+                  AppString.randomUsers,
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontSize: 24,
+                    decoration: TextDecoration.underline,
+                  ),
+                )
               ),
             ),
-            Expanded(
-              child: NotificationListener<OverscrollIndicatorNotification>(
-                onNotification: (overScroll) {
-                  overScroll.disallowIndicator();
-                  return true;
-                },
+            NotificationListener<OverscrollIndicatorNotification>(
+              onNotification: (overScroll) {
+                overScroll.disallowIndicator();
+                return true;
+              },
+              child: SizedBox(
+                width: size.width,
+                height: size.height/5,
                 child: ListView.builder(
+                  physics: const BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
                   itemCount: viewModel.randomUsers.length,
                   itemBuilder: (context, index) {
-                    return SizedBox(
-                      width: size.width/4,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: GestureDetector(
-                          onTap: () => viewModel.goOtherProfile(otherUserId: viewModel.randomUsers[index].id!),
-                          child: Image.memory(viewModel.randomUsers[index].avatar!, fit: BoxFit.cover,)
-                        ),
-                      )
+                    return Padding(
+                      padding: const EdgeInsets.fromLTRB(8.0, 0.0, 0.0, 8.0),
+                      child: GestureDetector(
+                        onTap: () => viewModel.goOtherProfile(otherUserId: viewModel.randomUsers[index].id!),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8.0),
+                          child: Image.memory(viewModel.randomUsers[index].avatar!, fit: BoxFit.cover,),
+                        )
+                      ),
                     );
                   },
-                )
-              ),
-            ),
-            Expanded(
-                flex: 3,
-                child: ListView(
-                  children: const [
-                    Card(
-                      child: Column(
-                        children: [
-                          Text("İsim"),
-                          Text("Soy isim"),
-                          Text("514 beğeni"),
-                        ],
-                      ),
-                    )
-                  ],
-                )
+                ),
+              )
             ),
           ],
         ),
