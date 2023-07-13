@@ -37,12 +37,18 @@ class _ExploreViewState extends State<ExploreView> {
                   ),
                 ),
               ),
-              const Expanded(
-                child: TabBarView(
-                  children: [
-                    UserSearchView(),
-                    BookSearchView()
-                  ],
+              Expanded(
+                child: NotificationListener<OverscrollIndicatorNotification>(
+                  onNotification: (overScroll) {
+                    overScroll.disallowIndicator();
+                    return true;
+                  },
+                  child: const TabBarView(
+                    children: [
+                      UserSearchView(),
+                      BookSearchView()
+                    ],
+                  ),
                 ),
               )
             ],
