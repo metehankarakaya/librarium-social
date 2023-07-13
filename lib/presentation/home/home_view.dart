@@ -47,6 +47,7 @@ class _HomeViewState extends State<HomeView> {
               return true;
             },
             child: ListView.builder(
+              physics: const BouncingScrollPhysics(),
               itemCount: viewModel.quotes.length,
               itemBuilder: (context, index) {
                 return QuoteCard(
