@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:librarium/presentation/explore/explore_view_model.dart';
+import 'package:librarium/presentation/explore/user_search/user_search_view.dart';
 import 'package:librarium/presentation/resources/color_manager.dart';
 import 'package:stacked/stacked.dart';
 
@@ -38,7 +39,7 @@ class _ExploreViewState extends State<ExploreView> {
               const Expanded(
                 child: TabBarView(
                   children: [
-                    Center(child: Text("UserSearch"),),
+                    UserSearchView(),
                     Center(child: Text("BookSearch"),)
                   ],
                 ),
