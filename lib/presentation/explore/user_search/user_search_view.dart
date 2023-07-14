@@ -134,7 +134,7 @@ class _UserSearchViewState extends State<UserSearchView> {
                   itemCount: viewModel.randomUsers.length,
                   itemBuilder: (context, index) {
                     return Padding(
-                      padding: const EdgeInsets.fromLTRB(8.0, 0.0, 0.0, 8.0),
+                      padding: const EdgeInsets.fromLTRB(4.0, 0.0, 4.0, 8.0),
                       child: GestureDetector(
                         onTap: () => viewModel.goOtherProfile(otherUserId: viewModel.randomUsers[index].id ?? ""),
                         child: ClipRRect(

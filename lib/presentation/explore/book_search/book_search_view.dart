@@ -134,7 +134,7 @@ class _BookSearchViewState extends State<BookSearchView> {
                   itemCount: viewModel.randomBooks.length,
                   itemBuilder: (context, index) {
                     return Padding(
-                      padding: const EdgeInsets.fromLTRB(8.0, 0.0, 0.0, 8.0),
+                      padding: const EdgeInsets.fromLTRB(4.0, 0.0, 4.0, 8.0),
                       child: GestureDetector(
                         onTap: () => viewModel.findBookDetails(bookId: viewModel.randomBooks[index].id ?? ""),
                         child: ClipRRect(
