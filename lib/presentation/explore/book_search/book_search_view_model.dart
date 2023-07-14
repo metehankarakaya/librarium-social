@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:librarium/core/route_manager.dart';
 import 'package:librarium/model/book.dart';
 import 'package:librarium/presentation/common/main_view_model.dart';
 import 'package:librarium/service/book_service/book_service.dart';
@@ -41,6 +42,10 @@ class BookSearchViewModel extends MainViewModel {
   findRandomBooks() async {
     randomBooks = await _bookService.findRandomBooks();
     notifyListeners();
+  }
+
+  findBookDetails({bookId = ""}) {
+    navigateBookDetailsWithParam(context, bookId);
   }
 
 }

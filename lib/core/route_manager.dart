@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:librarium/presentation/add_author/add_author_view.dart';
 import 'package:librarium/presentation/add_book/add_book_view.dart';
 import 'package:librarium/presentation/add_quote/add_quote_view.dart';
+import 'package:librarium/presentation/book_details/book_details_view.dart';
 import 'package:librarium/presentation/explore/explore_view.dart';
 import 'package:librarium/presentation/other_profile/other_profile_view.dart';
 import 'package:librarium/presentation/profile/profile_view.dart';
@@ -30,6 +31,10 @@ class AppRoute {
 
 void navigateOtherUserProfileWithParam(BuildContext context, String otherUserId) {
   Navigator.push(context, MaterialPageRoute(builder: (c) => OtherProfileView(otherUserId: otherUserId,)));
+}
+
+void navigateBookDetailsWithParam(BuildContext context, String bookId) {
+  Navigator.push(context, MaterialPageRoute(builder: (c) => BookDetailsView(bookId: bookId)));
 }
 
 class AppRouteGenerator {

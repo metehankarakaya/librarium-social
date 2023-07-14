@@ -88,6 +88,7 @@ class _BookSearchViewState extends State<BookSearchView> {
                                 ),
                               ),
                             ),
+                            onTap: () => viewModel.findBookDetails(bookId: viewModel.foundBooks[index].id ?? ""),
                             title: Text(
                               "${viewModel.foundBooks[index].title}",
                               style: const TextStyle(
@@ -135,9 +136,7 @@ class _BookSearchViewState extends State<BookSearchView> {
                     return Padding(
                       padding: const EdgeInsets.fromLTRB(8.0, 0.0, 0.0, 8.0),
                       child: GestureDetector(
-                        onTap: () {
-
-                        },
+                        onTap: () => viewModel.findBookDetails(bookId: viewModel.randomBooks[index].id ?? ""),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(8.0),
                           child: Image.memory(viewModel.randomBooks[index].coverImage!, fit: BoxFit.cover,),
