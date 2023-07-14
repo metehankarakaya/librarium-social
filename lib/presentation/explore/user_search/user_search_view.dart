@@ -88,6 +88,7 @@ class _UserSearchViewState extends State<UserSearchView> {
                                 ),
                               ),
                             ),
+                            onTap: () => viewModel.goOtherProfile(otherUserId: viewModel.foundUsers[index].id ?? ""),
                             title: Text(
                               "${viewModel.foundUsers[index].username}",
                               style: const TextStyle(
@@ -135,7 +136,7 @@ class _UserSearchViewState extends State<UserSearchView> {
                     return Padding(
                       padding: const EdgeInsets.fromLTRB(8.0, 0.0, 0.0, 8.0),
                       child: GestureDetector(
-                        onTap: () => viewModel.goOtherProfile(otherUserId: viewModel.randomUsers[index].id!),
+                        onTap: () => viewModel.goOtherProfile(otherUserId: viewModel.randomUsers[index].id ?? ""),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(8.0),
                           child: Image.memory(viewModel.randomUsers[index].avatar!, fit: BoxFit.cover,),
