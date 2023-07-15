@@ -18,6 +18,7 @@ class QuoteService extends MainService {
   static const String findAllQuotesApi = "/private-app-api/find/all/quotes";
   static const String likeQuoteApi = "/private-app-api/like/quote/";
   static const String dislikeQuoteApi = "/private-app-api/dislike/quote/";
+  static const String findQuotesByUserIdApi = "/private-app-api/find/quotes/by/user/id/";
 
   Future<bool> addQuote(Quote quote) async {
     String api = "${Environment().apiUrl}$addQuoteApi";
@@ -103,6 +104,29 @@ class QuoteService extends MainService {
     }
     else {
       return throw Exception("Service 'dislikeQuote' failed with statusCode: ${response.statusCode}");
+    }
+  }
+
+  Future<List<Quote>> findQuotesByUserId(String userId) async {
+    String api = "${Environment().apiUrl}$findQuotesByUserIdApi$userId";
+
+    final SharedPreferences prefs = await getPrefs();
+
+    final response = await http.get(
+      Uri.parse(api),
+      headers: <String, String> {
+        "Content-Type": "application/json",
+        "Accept": "application/json; charset=UTF-8",
+        HttpHeaders.authorizationHeader: prefs.getString("token").toString()
+      },
+    );
+    if (response.statusCode == 200) {
+      final jsonData = jsonDecode(response.body);
+      final List<Quote> foundQuoteList = List<Quote>.from(jsonData.map((x) => Quote.fromJson(x)));
+      return foundQuoteList;
+    }
+    else {
+      return throw Exception("Service 'findQuotesByUserId' failed with statusCode: ${response.statusCode}");
     }
   }
 

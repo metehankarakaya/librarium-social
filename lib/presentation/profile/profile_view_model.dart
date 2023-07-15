@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:librarium/core/route_manager.dart';
 import 'package:librarium/model/book.dart';
 import 'package:librarium/model/common_model/edit_about_me.dart';
+import 'package:librarium/model/quote.dart';
 import 'package:librarium/presentation/common/dialog/profile_dialog/edit_about_me_dialog.dart';
 import 'package:librarium/service/book_service/book_service.dart';
+import 'package:librarium/service/quote_service/quote_service.dart';
 import 'package:logger/logger.dart';
 
 import '../../injection.dart';
@@ -34,6 +36,7 @@ class ProfileViewModel extends MainViewModel {
 
   final UserService _userService = locator<UserService>();
   final BookService _bookService = locator<BookService>();
+  final QuoteService _quoteService = locator<QuoteService>();
 
   TextEditingController aboutMeController = TextEditingController();
 
@@ -49,8 +52,27 @@ class ProfileViewModel extends MainViewModel {
     Navigator.pushNamed(context, AppRoute.settingsRoute);
   }
 
-  showQuotesDialog() {
+  List<Quote> foundQuotes = [];
+  List<Quote> filteredFoundQuotes = [];
+  showQuotesDialog() async {
+    foundQuotes = await _quoteService.findQuotesByUserId(user.id ?? "");
+    filteredFoundQuotes = foundQuotes;
+    notifyListeners();
     quotesDialog(context, this);
+  }
+
+  void filterFoundQuotes(String value) {
+    if (value.isEmpty) {
+      filteredFoundQuotes = foundQuotes;
+      notifyListeners();
+    }
+    else {
+      filteredFoundQuotes = foundQuotes
+        .where(
+          (element) =>
+          element.content!.toLowerCase().contains(value.toLowerCase())).toList();
+      notifyListeners();
+    }
   }
 
   List<Book> foundBooks = [];
@@ -75,7 +97,6 @@ class ProfileViewModel extends MainViewModel {
       notifyListeners();
     }
   }
-
 
   List<User> foundFollowings = [];
   List<User> filteredFoundFollowings = [];
