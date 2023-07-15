@@ -42,7 +42,7 @@ class QuoteService extends MainService {
     }
   }
 
-  Future<List<Quote>> findAllQuotes() async {
+  Future<List<Quote>> findQuotesByUserAndFollowings() async {
     String api = "${Environment().apiUrl}$findAllQuotesApi";
 
     final SharedPreferences prefs = await getPrefs();
@@ -61,7 +61,7 @@ class QuoteService extends MainService {
       return quoteList;
     }
     else {
-      return throw Exception("Service 'findAllQuotes' failed with statusCode: ${response.statusCode}");
+      return throw Exception("Service 'findQuotesByUserAndFollowings' failed with statusCode: ${response.statusCode}");
     }
   }
 

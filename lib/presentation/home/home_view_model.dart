@@ -14,7 +14,7 @@ class HomeViewModel extends MainViewModel {
   @override
   void start() {
     // TODO: implement start
-    getAllQuotes();
+    findQuotesByUserAndFollowings();
   }
 
   Logger logger = Logger();
@@ -31,13 +31,13 @@ class HomeViewModel extends MainViewModel {
   }
 
   Future<void> refreshDash() async {
-    getAllQuotes();
+    findQuotesByUserAndFollowings();
   }
 
   List<Quote> quotes = [];
 
-  getAllQuotes() async {
-    quotes = await _quoteService.findAllQuotes();
+  findQuotesByUserAndFollowings() async {
+    quotes = await _quoteService.findQuotesByUserAndFollowings();
     notifyListeners();
   }
 
