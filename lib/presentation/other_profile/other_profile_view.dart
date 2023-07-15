@@ -41,13 +41,15 @@ class _OtherProfileViewState extends State<OtherProfileView> {
           backgroundColor: AppColor.transparent,
           elevation: 0,
           actions: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: OutlinedButton(
-                onPressed: () => viewModel.isFollow! ? viewModel.unFollowOtherUser("${viewModel.otherUser.id}") : viewModel.followOtherUser("${viewModel.otherUser.id}"),
-                child: Text(viewModel.isFollow == true ? "Following" : "Follow"),
-              ),
-            )
+            viewModel.otherUser.id != viewModel.otherUser.visitorId
+              ? Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: OutlinedButton(
+                  onPressed: () => viewModel.isFollow! ? viewModel.unFollowOtherUser("${viewModel.otherUser.id}") : viewModel.followOtherUser("${viewModel.otherUser.id}"),
+                  child: Text(viewModel.isFollow == true ? AppString.followings : AppString.follow),
+                ),
+              )
+              : const SizedBox()
           ],
         ),
         body: SingleChildScrollView(
