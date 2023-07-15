@@ -23,7 +23,7 @@ class UserService extends MainService {
   static const String findUsersByKeywordApi = "/private-app-api/find/users/by/keyword/";
   static const String followOtherUserApi = "/private-app-api/follow/other/user/";
   static const String unfollowOtherUserApi = "/private-app-api/unfollow/other/user/";
-  static const String findFollowersByUserIdApi = "/private-app-api/find/followers/by/user/id/";
+  static const String findFollowingsByUserIdApi = "/private-app-api/find/followings/by/user/id/";
 
   Future<OtherUser> findOtherUserDetail(String otherUserId) async {
     String api = "${Environment().apiUrl}$findOtherUserDetailApi$otherUserId";
@@ -178,8 +178,8 @@ class UserService extends MainService {
     }
   }
 
-  Future<List<User>> findFollowersByUserId(String userId) async {
-    String api = "${Environment().apiUrl}$findFollowersByUserIdApi$userId";
+  Future<List<User>> findFollowingsByUserId(String userId) async {
+    String api = "${Environment().apiUrl}$findFollowingsByUserIdApi$userId";
 
     final SharedPreferences prefs = await getPrefs();
 
@@ -197,7 +197,7 @@ class UserService extends MainService {
       return foundUserList;
     }
     else {
-      return throw Exception("Service 'findFollowersByUserId' failed with statusCode: ${response.statusCode}");
+      return throw Exception("Service 'findFollowingsByUserId' failed with statusCode: ${response.statusCode}");
     }
   }
 

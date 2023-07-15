@@ -80,7 +80,7 @@ class ProfileViewModel extends MainViewModel {
   List<User> foundFollowings = [];
   List<User> filteredFoundFollowings = [];
   showFollowingsDialog() async {
-    foundFollowings = await _userService.findFollowersByUserId(user.id ?? "");
+    foundFollowings = await _userService.findFollowingsByUserId(user.id ?? "");
     filteredFoundFollowings = foundFollowings;
     notifyListeners();
     followingsDialog(context, this);
