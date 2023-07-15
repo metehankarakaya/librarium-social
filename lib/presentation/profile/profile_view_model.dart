@@ -58,7 +58,7 @@ class ProfileViewModel extends MainViewModel {
     foundQuotes = await _quoteService.findQuotesByUserId(user.id ?? "");
     filteredFoundQuotes = foundQuotes;
     notifyListeners();
-    quotesDialog(context, this);
+    quotesDialog(context, viewModel: this);
   }
 
   void filterFoundQuotes(String value) {
@@ -81,7 +81,7 @@ class ProfileViewModel extends MainViewModel {
     foundBooks = await _bookService.findBooksByUserId(user.id ?? "");
     filteredFoundBooks = foundBooks;
     notifyListeners();
-    addedBooksDialog(context, this);
+    addedBooksDialog(context, viewModel: this);
   }
 
   void filterFoundBooks(String value) {
@@ -104,7 +104,7 @@ class ProfileViewModel extends MainViewModel {
     foundFollowings = await _userService.findFollowingsByUserId(user.id ?? "");
     filteredFoundFollowings = foundFollowings;
     notifyListeners();
-    followingsDialog(context, this);
+    followingsDialog(context, viewModel: this);
   }
 
   void filterFoundFollowings(String value) {
@@ -129,7 +129,7 @@ class ProfileViewModel extends MainViewModel {
     foundFollowers = await _userService.findFollowersByUserId(user.id ?? "");
     filteredFoundFollowers = foundFollowers;
     notifyListeners();
-    followersDialog(context, this);
+    followersDialog(context, viewModel: this);
   }
 
   void filterFoundFollowers(String value) {

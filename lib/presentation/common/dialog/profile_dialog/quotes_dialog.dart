@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../profile/profile_view_model.dart';
 import '../../../resources/string_manager.dart';
 
-void quotesDialog(BuildContext context, ProfileViewModel viewModel) {
+void quotesDialog(BuildContext context, {dynamic viewModel}) {
   Size size = MediaQuery.sizeOf(context);
   showDialog(
     context: context,

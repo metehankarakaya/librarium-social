@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../profile/profile_view_model.dart';
 import '../../../resources/color_manager.dart';
 import '../../../resources/string_manager.dart';
 
-void followersDialog(BuildContext context, ProfileViewModel viewModel) {
+void followersDialog(BuildContext context, {dynamic viewModel}) {
   Size size = MediaQuery.sizeOf(context);
   showDialog(
     context: context,
