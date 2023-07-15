@@ -69,17 +69,37 @@ class ProfileViewModel extends MainViewModel {
     }
     else {
       filteredFoundBooks = foundBooks
-          .where(
-          (element) =>
-              element.title!.toLowerCase().contains(value.toLowerCase())).toList();
+        .where(
+        (element) =>
+          element.title!.toLowerCase().contains(value.toLowerCase())).toList();
       notifyListeners();
     }
   }
 
 
-
-  showFollowingsDialog() {
+  List<User> foundFollowings = [];
+  List<User> filteredFoundFollowings = [];
+  showFollowingsDialog() async {
+    foundFollowings = await _userService.findFollowersByUserId(user.id ?? "");
+    filteredFoundFollowings = foundFollowings;
+    notifyListeners();
     followingsDialog(context, this);
+  }
+
+  void filterFoundFollowings(String value) {
+    if (value.isEmpty) {
+      filteredFoundFollowings = foundFollowings;
+      notifyListeners();
+    }
+    else {
+      filteredFoundFollowings = foundFollowings
+        .where(
+          (element) =>
+            element.username!.toLowerCase().contains(value.toLowerCase()) ||
+            element.firstName!.toLowerCase().contains(value.toLowerCase()) ||
+            element.lastName!.toLowerCase().contains(value.toLowerCase())).toList();
+      notifyListeners();
+    }
   }
 
   showFollowersDialog() {

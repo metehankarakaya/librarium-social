@@ -125,7 +125,8 @@ class BookService extends MainService {
     if (response.statusCode == 200) {
       final jsonData = jsonDecode(response.body);
       final List<Book> foundBookList = List<Book>.from(jsonData.map((x) => Book.fromJson(x)));
-      return foundBookList;    }
+      return foundBookList;
+    }
     else {
       return throw Exception("Service 'findBooksByUserId' failed with statusCode: ${response.statusCode}");
     }
