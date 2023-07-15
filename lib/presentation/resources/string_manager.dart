@@ -113,4 +113,7 @@ class AppString {
   static const String randomUsers = "Random Users";
   static const String randomBooks = "Random Books";
 
+  static const String following = "Following";
+  static const String follow = "Follow";
+
 }
