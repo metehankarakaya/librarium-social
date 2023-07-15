@@ -27,7 +27,7 @@ class LoginViewModel extends MainViewModel {
   final regex = RegExp(r'^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$');
 
   checkAll() {
-    if (usernameController.text.length < 8 || usernameController.text.length > 20) {
+    if (usernameController.text.length < 4 || usernameController.text.length > 12) {
       return false;
     }
     if (!(regex.hasMatch(passwordController.text))) {

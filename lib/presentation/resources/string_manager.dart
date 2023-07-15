@@ -101,7 +101,7 @@ class AppString {
   static const String confirmationTitle = "Confirm Logout";
   static const String confirmationAlert = "Are you sure you want to log out?";
 
-  static const String usernameRule = "• Username must be at least 8, maximum 20 characters.";
+  static const String usernameRule = "• Username must be at least 4, maximum 12 characters.";
   static const String passwordRule = "• Password must contain at least one uppercase letter, special character and digit.";
   static const String passwordMatchRule = "• The two passwords entered must match.";
   static const String usernamePasswordRule = "• Username and Password must not be the same.";

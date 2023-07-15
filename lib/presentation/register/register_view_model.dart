@@ -34,7 +34,7 @@ class RegisterViewModel extends MainViewModel {
     if (pickedImage == null) {
       return false;
     }
-    if (usernameController.text.length < 8 || usernameController.text.length > 20) {
+    if (usernameController.text.length < 4 || usernameController.text.length > 12) {
       return false;
     }
     if (!(regex.hasMatch(passwordController.text))) {

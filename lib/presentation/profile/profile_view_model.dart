@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:librarium/core/route_manager.dart';
+import 'package:librarium/model/book.dart';
 import 'package:librarium/model/common_model/edit_about_me.dart';
 import 'package:librarium/presentation/common/dialog/profile_dialog/edit_about_me_dialog.dart';
+import 'package:librarium/service/book_service/book_service.dart';
 import 'package:logger/logger.dart';
 
 import '../../injection.dart';
@@ -31,6 +33,7 @@ class ProfileViewModel extends MainViewModel {
   }
 
   final UserService _userService = locator<UserService>();
+  final BookService _bookService = locator<BookService>();
 
   TextEditingController aboutMeController = TextEditingController();
 
@@ -50,9 +53,30 @@ class ProfileViewModel extends MainViewModel {
     quotesDialog(context, this);
   }
 
-  showAddedBooksDialog() {
+  List<Book> foundBooks = [];
+  List<Book> filteredFoundBooks = [];
+  showAddedBooksDialog() async {
+    foundBooks = await _bookService.findBooksByUserId(user.id ?? "");
+    filteredFoundBooks = foundBooks;
+    notifyListeners();
     addedBooksDialog(context, this);
   }
+
+  void filterFoundBooks(String value) {
+    if (value.isEmpty) {
+      filteredFoundBooks = foundBooks;
+      notifyListeners();
+    }
+    else {
+      filteredFoundBooks = foundBooks
+          .where(
+          (element) =>
+              element.title!.toLowerCase().contains(value.toLowerCase())).toList();
+      notifyListeners();
+    }
+  }
+
+
 
   showFollowingsDialog() {
     followingsDialog(context, this);
