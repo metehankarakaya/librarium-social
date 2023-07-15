@@ -24,6 +24,7 @@ class UserService extends MainService {
   static const String followOtherUserApi = "/private-app-api/follow/other/user/";
   static const String unfollowOtherUserApi = "/private-app-api/unfollow/other/user/";
   static const String findFollowingsByUserIdApi = "/private-app-api/find/followings/by/user/id/";
+  static const String findFollowersByUserIdApi = "/private-app-api/find/followers/by/user/id/";
 
   Future<OtherUser> findOtherUserDetail(String otherUserId) async {
     String api = "${Environment().apiUrl}$findOtherUserDetailApi$otherUserId";
@@ -198,6 +199,29 @@ class UserService extends MainService {
     }
     else {
       return throw Exception("Service 'findFollowingsByUserId' failed with statusCode: ${response.statusCode}");
+    }
+  }
+
+  Future<List<User>> findFollowersByUserId(String userId) async {
+    String api = "${Environment().apiUrl}$findFollowersByUserIdApi$userId";
+
+    final SharedPreferences prefs = await getPrefs();
+
+    final response = await http.get(
+      Uri.parse(api),
+      headers: <String, String>{
+        "Content-Type": "application/json",
+        "Accept": "application/json; charset=UTF-8",
+        HttpHeaders.authorizationHeader: prefs.getString("token").toString()
+      },
+    );
+    if (response.statusCode == 200) {
+      final jsonData = jsonDecode(response.body);
+      final List<User> foundUserList = List<User>.from(jsonData.map((x) => User.fromJson(x)));
+      return foundUserList;
+    }
+    else {
+      return throw Exception("Service 'findFollowersByUserId' failed with statusCode: ${response.statusCode}");
     }
   }
 

@@ -102,8 +102,29 @@ class ProfileViewModel extends MainViewModel {
     }
   }
 
-  showFollowersDialog() {
+  List<User> foundFollowers = [];
+  List<User> filteredFoundFollowers = [];
+  showFollowersDialog() async {
+    foundFollowers = await _userService.findFollowersByUserId(user.id ?? "");
+    filteredFoundFollowers = foundFollowers;
+    notifyListeners();
     followersDialog(context, this);
+  }
+
+  void filterFoundFollowers(String value) {
+    if (value.isEmpty) {
+      filteredFoundFollowers = foundFollowers;
+      notifyListeners();
+    }
+    else {
+      filteredFoundFollowers = foundFollowers
+        .where(
+          (element) =>
+          element.username!.toLowerCase().contains(value.toLowerCase()) ||
+          element.firstName!.toLowerCase().contains(value.toLowerCase()) ||
+          element.lastName!.toLowerCase().contains(value.toLowerCase())).toList();
+      notifyListeners();
+    }
   }
 
   bool aboutMeBool = false;
