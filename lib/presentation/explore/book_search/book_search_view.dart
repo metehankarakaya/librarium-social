@@ -112,7 +112,7 @@ class _BookSearchViewState extends State<BookSearchView> {
               child: Padding(
                   padding: const EdgeInsets.only(top: 4.0, left: 8.0, bottom: 4.0),
                   child: Text(
-                    AppString.randomUsers,
+                    AppString.randomBooks,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontSize: 24,
                       decoration: TextDecoration.underline,
