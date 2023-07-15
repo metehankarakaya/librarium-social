@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:librarium/presentation/common/quote_card_view.dart';
 import 'package:librarium/presentation/drawer/drawer_view.dart';
 import 'package:librarium/presentation/home/home_view_model.dart';
 import 'package:librarium/presentation/resources/color_manager.dart';
 import 'package:librarium/presentation/resources/string_manager.dart';
+import 'package:librarium/presentation/resources/svg_manager.dart';
 import 'package:stacked/stacked.dart';
 
 class HomeView extends StatefulWidget {
@@ -35,7 +36,9 @@ class _HomeViewState extends State<HomeView> {
 
               },
               splashRadius: 20,
-              icon: const Icon(Icons.message_sharp),
+              icon: SvgPicture.asset(
+                AppSvg.messageIcon
+              ),
             )
           ],
         ),
