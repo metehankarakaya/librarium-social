@@ -21,6 +21,8 @@ class UserService extends MainService {
   static const String editAboutMeApi = "/private-app-api/edit/about/me";
   static const String findRandomUsersApi = "/private-app-api/find/random/users";
   static const String findUsersByKeywordApi = "/private-app-api/find/users/by/keyword/";
+  static const String followOtherUserApi = "/private-app-api/follow/other/user/";
+  static const String unfollowOtherUserApi = "/private-app-api/unfollow/other/user/";
 
   Future<OtherUser> findOtherUserDetail(String otherUserId) async {
     String api = "${Environment().apiUrl}$findOtherUserDetailApi$otherUserId";
@@ -130,6 +132,48 @@ class UserService extends MainService {
     }
     else {
       return throw Exception("Service 'findUsersByKeyword' failed with statusCode: ${response.statusCode}");
+    }
+  }
+
+  Future<bool> followOtherUser(String otherUserId) async {
+    String api = "${Environment().apiUrl}$followOtherUserApi$otherUserId";
+
+    final SharedPreferences prefs = await getPrefs();
+
+    final response = await http.get(
+      Uri.parse(api),
+      headers: <String, String>{
+        "Content-Type": "application/json",
+        "Accept": "application/json; charset=UTF-8",
+        HttpHeaders.authorizationHeader: prefs.getString("token").toString()
+      },
+    );
+    if (response.statusCode == 200) {
+      return bool.tryParse(response.body) ?? false;
+    }
+    else {
+      return throw Exception("Service 'followOtherUser' failed with statusCode: ${response.statusCode}");
+    }
+  }
+
+  Future<bool> unfollowOtherUser(String otherUserId) async {
+    String api = "${Environment().apiUrl}$unfollowOtherUserApi$otherUserId";
+
+    final SharedPreferences prefs = await getPrefs();
+
+    final response = await http.get(
+      Uri.parse(api),
+      headers: <String, String>{
+        "Content-Type": "application/json",
+        "Accept": "application/json; charset=UTF-8",
+        HttpHeaders.authorizationHeader: prefs.getString("token").toString()
+      },
+    );
+    if (response.statusCode == 200) {
+      return bool.tryParse(response.body) ?? false;
+    }
+    else {
+      return throw Exception("Service 'unfollowOtherUser' failed with statusCode: ${response.statusCode}");
     }
   }
 

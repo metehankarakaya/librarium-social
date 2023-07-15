@@ -44,10 +44,8 @@ class _OtherProfileViewState extends State<OtherProfileView> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: OutlinedButton(
-                onPressed: () {
-
-                },
-                child: const Text("Follow"),
+                onPressed: () => viewModel.isFollow! ? viewModel.unFollowOtherUser("${viewModel.otherUser.id}") : viewModel.followOtherUser("${viewModel.otherUser.id}"),
+                child: Text(viewModel.isFollow == true ? "Following" : "Follow"),
               ),
             )
           ],

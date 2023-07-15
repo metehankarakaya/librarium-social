@@ -5,6 +5,7 @@ class OtherUser {
 
   OtherUser({
     this.id,
+    this.visitorId,
     this.username,
     this.firstName,
     this.lastName,
@@ -21,6 +22,7 @@ class OtherUser {
   });
 
   String? id;
+  String? visitorId;
   String? username;
   String? firstName;
   String? lastName;
@@ -38,6 +40,7 @@ class OtherUser {
 
   factory OtherUser.fromJson(Map<String, dynamic> json) => OtherUser(
     id: json["id"],
+    visitorId: json["visitorId"],
     username: json["username"],
     firstName: json["firstName"],
     lastName: json["lastName"],
@@ -55,6 +58,7 @@ class OtherUser {
 
   Map<String, dynamic> toJson() => {
     "id": id,
+    "visitorId": visitorId,
     "username": username,
     "firstName": firstName,
     "lastName": lastName,
