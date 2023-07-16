@@ -15,7 +15,7 @@ class QuoteService extends MainService {
   Logger logger = Logger();
 
   static const String addQuoteApi = "/private-app-api/add/quote";
-  static const String findAllQuotesApi = "/private-app-api/find/all/quotes";
+  static const String findQuotesByUserAndFollowingsApi = "/private-app-api/find/quotes/by/user/and/followings";
   static const String likeQuoteApi = "/private-app-api/like/quote/";
   static const String dislikeQuoteApi = "/private-app-api/dislike/quote/";
   static const String findQuotesByUserIdApi = "/private-app-api/find/quotes/by/user/id/";
@@ -43,7 +43,7 @@ class QuoteService extends MainService {
   }
 
   Future<List<Quote>> findQuotesByUserAndFollowings() async {
-    String api = "${Environment().apiUrl}$findAllQuotesApi";
+    String api = "${Environment().apiUrl}$findQuotesByUserAndFollowingsApi";
 
     final SharedPreferences prefs = await getPrefs();
 
