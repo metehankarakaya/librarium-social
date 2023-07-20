@@ -3,6 +3,7 @@ import 'package:librarium/presentation/common/main_view_model.dart';
 import 'package:librarium/presentation/common/snack_bar/show_snack_bar.dart';
 import 'package:logger/logger.dart';
 
+import '../../core/route_manager.dart';
 import '../../injection.dart';
 import '../../model/book.dart';
 import '../../model/quote.dart';
@@ -168,5 +169,8 @@ class OtherProfileViewModel extends MainViewModel {
     }
   }
 
+  goOtherProfile({String otherUserId = ""}) async {
+    navigateOtherUserProfileWithParam(context, otherUserId);
+  }
 
 }

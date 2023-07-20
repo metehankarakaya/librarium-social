@@ -46,6 +46,7 @@ void followingsDialog(BuildContext context, {dynamic viewModel}) {
                               leading: Icon(Icons.person, color: AppColor.blue900,),
                               title: Text("${viewModel.filteredFoundFollowings[index].username}"),
                               subtitle: Text("${viewModel.filteredFoundFollowings[index].firstName} ${viewModel.filteredFoundFollowings[index].lastName}"),
+                              onTap: () => viewModel.goOtherProfile(otherUserId: viewModel.filteredFoundFollowings[index].id ?? ""),
                               dense: true,
                             );
                           },
