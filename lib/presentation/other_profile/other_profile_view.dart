@@ -66,13 +66,16 @@ class _OtherProfileViewState extends State<OtherProfileView> {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 8.0),
-                child: CircleAvatar(
-                  radius: 150,
-                  backgroundColor: AppColor.transparent,
-                  backgroundImage: viewModel.otherUser.avatar != null
-                    ? MemoryImage(viewModel.otherUser.avatar!)
-                    : null,
+                padding: EdgeInsets.zero,
+                child: GestureDetector(
+                  onTap: () => viewModel.showFullAvatar(),
+                  child: CircleAvatar(
+                    radius: 150,
+                    backgroundColor: AppColor.transparent,
+                    backgroundImage: viewModel.otherUser.avatar != null
+                      ? MemoryImage(viewModel.otherUser.avatar!)
+                      : null,
+                  ),
                 ),
               ),
               ListTile(

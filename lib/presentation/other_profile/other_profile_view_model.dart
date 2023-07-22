@@ -1,4 +1,5 @@
 import 'package:librarium/model/common_model/other_user.dart';
+import 'package:librarium/presentation/common/dialog/profile_dialog/full_avatar_dialog.dart';
 import 'package:librarium/presentation/common/main_view_model.dart';
 import 'package:librarium/presentation/common/snack_bar/show_snack_bar.dart';
 import 'package:logger/logger.dart';
@@ -171,6 +172,10 @@ class OtherProfileViewModel extends MainViewModel {
 
   goOtherProfile({String otherUserId = ""}) {
     navigateOtherUserProfileWithParam(context, otherUserId);
+  }
+
+  showFullAvatar() {
+    fullAvatarDialog(context, otherUser.avatar!);
   }
 
 }
