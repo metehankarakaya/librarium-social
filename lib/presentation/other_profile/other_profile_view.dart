@@ -65,8 +65,17 @@ class _OtherProfileViewState extends State<OtherProfileView> {
           primary: false,
           child: Column(
             children: [
-              Padding(
-                padding: EdgeInsets.zero,
+              Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColor.blue900,
+                      offset: const Offset(0, 0),
+                      blurRadius: 50.0,
+                    )
+                  ]
+                ),
                 child: GestureDetector(
                   onTap: () => viewModel.showFullAvatar(),
                   child: CircleAvatar(
