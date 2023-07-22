@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 import 'package:librarium/model/common_model/other_user.dart';
 import 'package:librarium/presentation/common/dialog/profile_dialog/full_avatar_dialog.dart';
 import 'package:librarium/presentation/common/main_view_model.dart';
@@ -72,6 +73,14 @@ class OtherProfileViewModel extends MainViewModel {
     otherUser = await _userService.findOtherUserDetail(otherUserId);
     notifyListeners();
     checkFollowers();
+    formatCreatedDate();
+  }
+
+  String formattedCreatedDate = "";
+  formatCreatedDate() {
+    DateTime createdDate = DateTime.parse("${otherUser.createdDate}");
+    formattedCreatedDate = DateFormat("d MMMM y").format(createdDate);
+    notifyListeners();
   }
 
   List<Quote> foundQuotes = [];

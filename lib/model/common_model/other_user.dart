@@ -17,6 +17,7 @@ class OtherUser {
     this.favorites,
     this.addedBooks,
     this.quotes,
+    this.createdDate,
     this.blockReason,
     this.isBlocked
   });
@@ -34,6 +35,7 @@ class OtherUser {
   List<String>? favorites; //book Id list
   List<String>? addedBooks; //book Id list
   List<String>? quotes; //quote Id list
+  DateTime? createdDate;
   double? wallet;
   String? blockReason;
   bool? isBlocked;
@@ -52,6 +54,7 @@ class OtherUser {
     favorites: json["favorites"] == null ? [] : List<String>.from(json["favorites"]!.map((x) => x)),
     addedBooks: json["addedBooks"] == null ? [] : List<String>.from(json["addedBooks"]!.map((x) => x)),
     quotes: json["quotes"] == null ? [] : List<String>.from(json["quotes"]!.map((x) => x)),
+    createdDate: json["createdDate"] == null ? null : DateTime.parse(json["createdDate"]),
     blockReason: json["blockReason"],
     isBlocked: json["isBlocked"],
   );
@@ -70,6 +73,7 @@ class OtherUser {
     "favorites": favorites == null ? [] : List<dynamic>.from(favorites!.map((x) => x)),
     "addedBooks": addedBooks == null ? [] : List<dynamic>.from(addedBooks!.map((x) => x)),
     "quotes": quotes == null ? [] : List<dynamic>.from(quotes!.map((x) => x)),
+    "createdDate": createdDate?.toIso8601String(),
     "wallet": wallet,
     "isBlocked": isBlocked,
     "blockReason": blockReason,

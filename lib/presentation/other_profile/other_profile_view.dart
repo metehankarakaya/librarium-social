@@ -138,6 +138,16 @@ class _OtherProfileViewState extends State<OtherProfileView> {
                     style: const TextStyle(fontSize: 18),
                   ),
                 ),
+              ),
+              ListTile(
+                title: Text(
+                  "${AppString.joinDate}: ${viewModel.formattedCreatedDate}",
+                  style: const TextStyle(
+                    color: AppColor.grey,
+                    fontWeight: FontWeight.bold
+                  ),
+                  textAlign: TextAlign.end,
+                ),
               )
             ],
           ),
