@@ -169,7 +169,7 @@ class OtherProfileViewModel extends MainViewModel {
     }
   }
 
-  goOtherProfile({String otherUserId = ""}) async {
+  goOtherProfile({String otherUserId = ""}) {
     navigateOtherUserProfileWithParam(context, otherUserId);
   }
 

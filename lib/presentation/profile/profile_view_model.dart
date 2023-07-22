@@ -182,4 +182,8 @@ class ProfileViewModel extends MainViewModel {
 
   }
 
+  goOtherProfile({String otherUserId = ""}) {
+    navigateOtherUserProfileWithParam(context, otherUserId);
+  }
+
 }

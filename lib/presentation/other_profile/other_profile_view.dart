@@ -30,7 +30,7 @@ class _OtherProfileViewState extends State<OtherProfileView> {
       },
       builder: (context, viewModel, child) => Scaffold(
         backgroundColor: AppColor.bgColor,
-        extendBodyBehindAppBar: true,
+        extendBodyBehindAppBar: false,
         appBar: AppBar(
           leading: IconButton(
             onPressed: () {
@@ -48,6 +48,15 @@ class _OtherProfileViewState extends State<OtherProfileView> {
                   onPressed: () => viewModel.isFollow! ? viewModel.unFollowOtherUser("${viewModel.otherUser.id}") : viewModel.followOtherUser("${viewModel.otherUser.id}"),
                   child: Text(viewModel.isFollow == true ? AppString.followings : AppString.follow),
                 ),
+              )
+              : const SizedBox(),
+            viewModel.otherUser.id != viewModel.otherUser.visitorId
+              ? IconButton(
+                onPressed: () {
+
+                },
+                splashRadius: 20,
+                icon: Icon(Icons.more_vert, color: AppColor.blue900,),
               )
               : const SizedBox()
           ],
