@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:librarium/presentation/common/quote_card_view.dart';
 import 'package:librarium/presentation/drawer/drawer_view.dart';
@@ -41,7 +42,7 @@ class _HomeViewState extends State<HomeView> {
         return viewModel;
       },
       builder: (context, viewModel, child) => Scaffold(
-        backgroundColor: const Color(0xFFfff9eb),
+        backgroundColor: AppColor.bgColor,
         drawer: const DrawerView(),
         appBar: AppBar(
           title: const Text(AppString.dashboard),
@@ -95,9 +96,30 @@ class _HomeViewState extends State<HomeView> {
             ),
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () => viewModel.goAddQuoteView(),
+        floatingActionButton: SpeedDial(
           backgroundColor: AppColor.blue900,
+          overlayColor: AppColor.black,
+          activeBackgroundColor: AppColor.blue900,
+          spacing: 5,
+          animationAngle: -5000,
+          children: [
+            SpeedDialChild(
+              child: const Text(AppString.quote),
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(bottomRight: Radius.circular(20))
+              ),
+              onTap: () => viewModel.goAddQuoteView()
+            ),
+            SpeedDialChild(
+              child: const Text(AppString.post),
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(20))
+              ),
+              onTap: () {
+
+              }
+            )
+          ],
           child: const Icon(Icons.add),
         ),
       ),
