@@ -16,12 +16,28 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+
+  late HomeViewModel viewModel;
+
+  ScrollController scrollController = ScrollController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    viewModel = HomeViewModel(context);
+    viewModel.start();
+    scrollController.addListener(() {
+      if (scrollController.position.maxScrollExtent == scrollController.offset) {
+        viewModel.findQuotesByUserAndFollowings();
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomeViewModel>.reactive(
       viewModelBuilder: () {
-        HomeViewModel viewModel = HomeViewModel(context);
-        viewModel.start();
         return viewModel;
       },
       builder: (context, viewModel, child) => Scaffold(
@@ -50,16 +66,31 @@ class _HomeViewState extends State<HomeView> {
               return true;
             },
             child: ListView.builder(
-              //physics: const BouncingScrollPhysics(),
-              itemCount: viewModel.quotes.length,
+              controller: scrollController,
+              itemCount: viewModel.quotes.length + 1,
               itemBuilder: (context, index) {
-                return QuoteCard(
-                  viewModel: viewModel,
-                  quote: viewModel.quotes[index],
-                  onLike: () => viewModel.likeQuote(),
-                  onDislike: () => viewModel.dislikeQuote(),
-                  goOtherProfile: () => viewModel.goOtherProfile(),
-                );
+                if (index < viewModel.quotes.length) {
+                  return QuoteCard(
+                    viewModel: viewModel,
+                    quote: viewModel.quotes[index],
+                    onLike: () => viewModel.likeQuote(),
+                    onDislike: () => viewModel.dislikeQuote(),
+                    goOtherProfile: () => viewModel.goOtherProfile(),
+                  );
+                }
+                else {
+                  if (!viewModel.hasMore) {
+                    return const ListTile(
+                      title: Text(AppString.noMoreQuote, textAlign: TextAlign.center,),
+                    );
+                  }
+                  else {
+                    return const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Center(child: CircularProgressIndicator()),
+                    );
+                  }
+                }
               },
             ),
           ),

@@ -118,4 +118,7 @@ class AppString {
 
   static const String joinDate = "Join date";
 
+  static const String noMoreQuote = "No More Quote!";
+
+
 }

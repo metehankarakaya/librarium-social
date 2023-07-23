@@ -34,10 +34,18 @@ class HomeViewModel extends MainViewModel {
     findQuotesByUserAndFollowings();
   }
 
-  List<Quote> quotes = [];
+  int pageNumber = 0;
+  bool hasMore = true;
 
+  List<Quote> quotes = [];
+  List<Quote> quotesPart = [];
   findQuotesByUserAndFollowings() async {
-    quotes = await _quoteService.findQuotesByUserAndFollowings();
+    quotesPart = await _quoteService.findQuotesByUserAndFollowings(pageNumber);
+    quotes.addAll(quotesPart);
+    if (quotesPart.isEmpty) {
+      hasMore = false;
+    }
+    pageNumber++;
     notifyListeners();
   }
 

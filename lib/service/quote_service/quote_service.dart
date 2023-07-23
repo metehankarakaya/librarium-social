@@ -42,8 +42,8 @@ class QuoteService extends MainService {
     }
   }
 
-  Future<List<Quote>> findQuotesByUserAndFollowings() async {
-    String api = "${Environment().apiUrl}$findQuotesByUserAndFollowingsApi";
+  Future<List<Quote>> findQuotesByUserAndFollowings(int pageNumber) async {
+    String api = "${Environment().apiUrl}$findQuotesByUserAndFollowingsApi?pageNumber=$pageNumber&pageSize=10";
 
     final SharedPreferences prefs = await getPrefs();
 
