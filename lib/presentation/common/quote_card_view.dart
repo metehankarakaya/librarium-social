@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:librarium/model/quote.dart';
 import 'package:librarium/presentation/home/home_view_model.dart';
 import 'package:librarium/presentation/resources/string_manager.dart';
 
-class QuoteCard extends StatelessWidget {
+class QuoteCard extends StatefulWidget {
   final HomeViewModel viewModel;
   final Quote quote;
   final VoidCallback onLike;
@@ -20,6 +21,27 @@ class QuoteCard extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<QuoteCard> createState() => _QuoteCardState();
+}
+
+class _QuoteCardState extends State<QuoteCard> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    formatCreatedDate();
+  }
+
+  String formattedCreatedDate = "";
+  formatCreatedDate() {
+    setState(() {
+      DateTime createdDate = DateTime.parse("${widget.quote.createdDate}");
+      formattedCreatedDate = DateFormat("d MMMM").format(createdDate);
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -32,25 +54,25 @@ class QuoteCard extends StatelessWidget {
                 Expanded(
                   child: ListTile(
                     leading: GestureDetector(
-                      onTap: () => viewModel.goOtherProfile(otherUserId: quote.user?.id ?? ""),
+                      onTap: () => widget.viewModel.goOtherProfile(otherUserId: widget.quote.user?.id ?? ""),
                       child: CircleAvatar(
                         radius: 25,
-                        backgroundImage: MemoryImage(quote.user!.avatar!)
+                        backgroundImage: MemoryImage(widget.quote.user!.avatar!)
                       ),
                     ),
                     title: Text(
-                      "${quote.user!.username}",
+                      "${widget.quote.user!.username}",
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                     subtitle: Text(
-                      "${quote.user!.firstName} ${quote.user!.lastName}",
+                      "${widget.quote.user!.firstName} ${widget.quote.user!.lastName}",
                     ),
                     trailing: IconButton(
                       onPressed: () {
 
                       },
                       splashRadius: 20,
-                      icon: const Icon(Icons.more_vert),
+                      icon: const Icon(Icons.more_horiz),
                     ),
                   ),
                 )
@@ -59,7 +81,7 @@ class QuoteCard extends StatelessWidget {
             const Divider(),
             ListTile(
               title: Text(
-                "${quote.content}",
+                "${widget.quote.content}",
                 textAlign: TextAlign.center,
                 maxLines: 5,
                 style: const TextStyle(overflow: TextOverflow.ellipsis),
@@ -67,12 +89,21 @@ class QuoteCard extends StatelessWidget {
             ),
             ListTile(
               title: Text(
-                "${quote.book?.title} - ${quote.book?.author?.firstName} ${quote.book?.author?.lastName}",
+                "${widget.quote.book?.title} - ${widget.quote.book?.author?.firstName} ${widget.quote.book?.author?.lastName}",
                 textAlign: TextAlign.start,
               ),
-              subtitle: Text(
-                "${AppString.page} ${quote.pageNumber}",
-                textAlign: TextAlign.start,
+              subtitle: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "${AppString.page} ${widget.quote.pageNumber}",
+                    textAlign: TextAlign.start,
+                  ),
+                  Text(
+                    formattedCreatedDate,
+                    textAlign: TextAlign.start,
+                  ),
+                ],
               ),
             )
           ],
