@@ -17,7 +17,11 @@ class _AddQuoteViewState extends State<AddQuoteView> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.sizeOf(context);
     return ViewModelBuilder<AddQuoteViewModel>.reactive(
-      viewModelBuilder: () => AddQuoteViewModel(context),
+      viewModelBuilder: () {
+        AddQuoteViewModel viewModel = AddQuoteViewModel(context);
+        viewModel.start();
+        return viewModel;
+      },
       builder: (context, viewModel, child) => Scaffold(
         backgroundColor: AppColor.bgColor,
         appBar: AppBar(
@@ -35,6 +39,13 @@ class _AddQuoteViewState extends State<AddQuoteView> {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
+              OutlinedButton(
+                onPressed: () => viewModel.showSelectBookDialog(),
+                style: ElevatedButton.styleFrom(
+                  fixedSize: Size(size.width, size.height/12),
+                ),
+                child: Text(viewModel.selectedBook != null ? "${viewModel.selectedBook?.title}": AppString.selectBook),
+              ),
               TextFormField(
                 controller: viewModel.contentController,
                 onChanged: (val) => viewModel.listenToChanges(),
@@ -46,8 +57,16 @@ class _AddQuoteViewState extends State<AddQuoteView> {
                   prefixIcon: Icon(Icons.keyboard_arrow_right_sharp)
                 ),
               ),
+              TextFormField(
+                controller: viewModel.pageNumberController,
+                onChanged: (val) => viewModel.listenToChanges(),
+                decoration: const InputDecoration(
+                  label: Text(AppString.pageNumber),
+                  prefixIcon: Icon(Icons.keyboard_arrow_right_sharp)
+                ),
+              ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(16.0),
                 child: ElevatedButton(
                   onPressed: viewModel.checkAll()
                     ? () => viewModel.addQuote()
