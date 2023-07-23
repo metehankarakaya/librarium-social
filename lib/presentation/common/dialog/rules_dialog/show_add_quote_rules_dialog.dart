@@ -20,7 +20,13 @@ void showAddQuoteRulesDialog(BuildContext context) {
             ),
             children: const [
               ListTile(
+                title: Text(AppString.addQuoteBookRule),
+              ),
+              ListTile(
                 title: Text(AppString.addQuoteRule),
+              ),
+              ListTile(
+                title: Text(AppString.addQuotePageNumberRule),
               ),
             ],
           );
