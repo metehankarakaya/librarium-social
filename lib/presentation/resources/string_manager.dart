@@ -79,7 +79,9 @@ class AppString {
   static const String addQuote = "Add Quote";
   static const String send = "Send";
   static const String content = "Quote Content";
+  static const String addQuoteBookRule = "• Book must not be empty.";
   static const String addQuoteRule = "• Quote Content must not be empty.";
+  static const String addQuotePageNumberRule = "• Page Number maximum 6 characters.";
   static const String contentAddSuccessful = "Quote successfully added.";
   static const String contentAddFailed = "Could not add citation.";
 
@@ -87,6 +89,7 @@ class AppString {
   static const String searchBook = "Search Book...";
   static const String searchAuthor = "Search Author...";
   static const String selectAuthor = "Select Author";
+  static const String selectBook = "Select Book";
   static const String searchPublisher = "Search Publisher...";
   static const String selectPublisher = "Select Publisher";
 
@@ -119,6 +122,9 @@ class AppString {
   static const String joinDate = "Join date";
 
   static const String noMoreQuote = "No More Quote!";
+
+  static const String pageNumber = "Page Number";
+  static const String page = "Page: ";
 
 
 }
