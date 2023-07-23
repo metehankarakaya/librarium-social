@@ -125,6 +125,8 @@ class AppString {
 
   static const String pageNumber = "Page Number";
   static const String page = "Page: ";
+  static const String quote = "Quote";
+  static const String post = "Post";
 
 
 }
