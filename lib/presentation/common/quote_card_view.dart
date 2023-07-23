@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:librarium/model/quote.dart';
 import 'package:librarium/presentation/home/home_view_model.dart';
+import 'package:librarium/presentation/resources/string_manager.dart';
 
 class QuoteCard extends StatelessWidget {
   final HomeViewModel viewModel;
@@ -20,7 +21,6 @@ class QuoteCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.sizeOf(context);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Card(
@@ -29,25 +29,21 @@ class QuoteCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 8.0, top: 8.0),
-                  child: GestureDetector(
-                    onTap: () => viewModel.goOtherProfile(otherUserId: quote.user?.id ?? ""),
-                    child: CircleAvatar(
-                      radius: 25,
-                      backgroundImage: MemoryImage(quote.user!.avatar!)
-                    ),
-                  ),
-                ),
                 Expanded(
                   child: ListTile(
+                    leading: GestureDetector(
+                      onTap: () => viewModel.goOtherProfile(otherUserId: quote.user?.id ?? ""),
+                      child: CircleAvatar(
+                        radius: 25,
+                        backgroundImage: MemoryImage(quote.user!.avatar!)
+                      ),
+                    ),
                     title: Text(
-                      "@${quote.user!.username}", textAlign: TextAlign.center,
-                      style: const TextStyle(fontStyle: FontStyle.italic),
+                      "${quote.user!.username}",
+                      style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                     subtitle: Text(
                       "${quote.user!.firstName} ${quote.user!.lastName}",
-                      textAlign: TextAlign.center,
                     ),
                     trailing: IconButton(
                       onPressed: () {
@@ -69,26 +65,15 @@ class QuoteCard extends StatelessWidget {
                 style: const TextStyle(overflow: TextOverflow.ellipsis),
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                IconButton(
-                  onPressed: () => viewModel.dislikeQuote(quoteId: "${quote.id}"),
-                  splashRadius: 20,
-                  icon: Icon(
-                    Icons.thumb_down,
-                    color: viewModel.likeBoolean ? Colors.red : Colors.red.shade200,
-                  ),
-                ),
-                IconButton(
-                  onPressed: () => viewModel.likeQuote(quoteId: "${quote.id}"),
-                  splashRadius: 20,
-                  icon: Icon(
-                    Icons.thumb_up,
-                    color: viewModel.likeBoolean ? Colors.blue : Colors.blue.shade200,
-                  ),
-                )
-              ],
+            ListTile(
+              title: Text(
+                "${quote.book?.title} - ${quote.book?.author?.firstName} ${quote.book?.author?.lastName}",
+                textAlign: TextAlign.start,
+              ),
+              subtitle: Text(
+                "${AppString.page} ${quote.pageNumber}",
+                textAlign: TextAlign.start,
+              ),
             )
           ],
         ),
