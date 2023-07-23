@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:librarium/presentation/add_quote/add_quote_view_model.dart';
 import 'package:librarium/presentation/resources/color_manager.dart';
 import 'package:stacked/stacked.dart';
@@ -60,6 +61,10 @@ class _AddQuoteViewState extends State<AddQuoteView> {
               TextFormField(
                 controller: viewModel.pageNumberController,
                 onChanged: (val) => viewModel.listenToChanges(),
+                keyboardType: TextInputType.number,
+                inputFormatters: <TextInputFormatter>[
+                  FilteringTextInputFormatter.digitsOnly
+                ], //
                 decoration: const InputDecoration(
                   label: Text(AppString.pageNumber),
                   prefixIcon: Icon(Icons.keyboard_arrow_right_sharp)
