@@ -97,12 +97,8 @@ class _QuoteCardState extends State<QuoteCard> {
                 children: [
                   Text(
                     "${AppString.page} ${widget.quote.pageNumber}",
-                    textAlign: TextAlign.start,
                   ),
-                  Text(
-                    formattedCreatedDate,
-                    textAlign: TextAlign.start,
-                  ),
+                  Text(formattedCreatedDate),
                 ],
               ),
             )
