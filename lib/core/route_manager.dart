@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:librarium/presentation/add_author/add_author_view.dart';
 import 'package:librarium/presentation/add_book/add_book_view.dart';
+import 'package:librarium/presentation/add_post/add_post_view.dart';
 import 'package:librarium/presentation/add_quote/add_quote_view.dart';
 import 'package:librarium/presentation/book_details/book_details_view.dart';
 import 'package:librarium/presentation/explore/explore_view.dart';
@@ -24,6 +25,7 @@ class AppRoute {
   static const String addAuthorRoute = "addAuthor";
   static const String settingsRoute = "settings";
   static const String addQuoteRoute = "addQuote";
+  static const String addPostRoute = "addPost";
   static const String otherProfileRoute = "otherProfile";
   static const String exploreRoute = "explore";
 
@@ -60,6 +62,8 @@ class AppRouteGenerator {
         return MaterialPageRoute(builder: (_) => const AddQuoteView());
       case AppRoute.exploreRoute:
         return MaterialPageRoute(builder: (_) => const ExploreView());
+      case AppRoute.addPostRoute:
+        return MaterialPageRoute(builder: (_) => const AddPostView());
       default:
         return unDefinedRoute();
     }
