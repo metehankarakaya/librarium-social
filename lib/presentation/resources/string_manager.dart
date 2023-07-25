@@ -49,7 +49,7 @@ class AppString {
   static const String logOut = "Log out";
 
   static const String addCoverImage = "Add Cover Image";
-  static const String title = "title";
+  static const String title = "Title";
   static const String description = "description";
   static const String language = "language";
   static const String isbn = "isbn";
@@ -79,6 +79,7 @@ class AppString {
   static const String addQuote = "Add Quote";
   static const String send = "Send";
   static const String content = "Quote Content";
+  static const String postContent = "Post Content";
   static const String addQuoteBookRule = "• Book must not be empty.";
   static const String addQuoteRule = "• Quote Content must not be empty.";
   static const String addQuotePageNumberRule = "• Page Number maximum 6 characters.";
@@ -127,6 +128,8 @@ class AppString {
   static const String page = "Page: ";
   static const String quote = "Quote";
   static const String post = "Post";
+  static const String addPostSuccessful = "The Post has been successfully added!";
+  static const String addPostFailed = "The Post could not be added successfully!";
 
 
 }
