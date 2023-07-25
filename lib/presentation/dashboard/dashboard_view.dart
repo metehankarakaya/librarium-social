@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:librarium/presentation/common/quote_card_view.dart';
+import 'package:librarium/presentation/dashboard/dashboard_view_model.dart';
 import 'package:librarium/presentation/drawer/drawer_view.dart';
-import 'package:librarium/presentation/home/home_view_model.dart';
 import 'package:librarium/presentation/resources/color_manager.dart';
 import 'package:librarium/presentation/resources/string_manager.dart';
 import 'package:librarium/presentation/resources/svg_manager.dart';
 import 'package:stacked/stacked.dart';
 
-class HomeView extends StatefulWidget {
-  const HomeView({Key? key}) : super(key: key);
+import '../common/quote_card_view.dart';
+
+class DashboardView extends StatefulWidget {
+  const DashboardView({Key? key}) : super(key: key);
 
   @override
-  State<HomeView> createState() => _HomeViewState();
+  State<DashboardView> createState() => _DashboardViewState();
 }
 
-class _HomeViewState extends State<HomeView> {
+class _DashboardViewState extends State<DashboardView> {
 
-  late HomeViewModel viewModel;
+  late DashboardViewModel viewModel;
 
   ScrollController scrollController = ScrollController();
 
@@ -26,7 +27,7 @@ class _HomeViewState extends State<HomeView> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    viewModel = HomeViewModel(context);
+    viewModel = DashboardViewModel(context);
     viewModel.start();
     scrollController.addListener(() {
       if (scrollController.position.maxScrollExtent == scrollController.offset) {
@@ -37,7 +38,7 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<HomeViewModel>.reactive(
+    return ViewModelBuilder<DashboardViewModel>.reactive(
       viewModelBuilder: () {
         return viewModel;
       },

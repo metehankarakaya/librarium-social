@@ -8,8 +8,8 @@ import 'package:librarium/service/quote_service/quote_service.dart';
 import 'package:librarium/service/user_service/user_service.dart';
 import 'package:logger/logger.dart';
 
-class HomeViewModel extends MainViewModel {
-  HomeViewModel(super.context);
+class DashboardViewModel extends MainViewModel {
+  DashboardViewModel(super.context);
 
   @override
   void start() {
