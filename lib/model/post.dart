@@ -25,7 +25,7 @@ class Post {
     id: json["id"],
     title: json["title"],
     content: json["content"],
-    image: base64.decode(json["image"]),
+    image: json["image"] == null ? null : base64.decode(json["image"]),
     user: json["user"] == null ? null : User.fromJson(json["user"]),
     createdDate: json["createdDate"] == null ? null : DateTime.parse(json["createdDate"]),
   );
