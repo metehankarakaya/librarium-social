@@ -10,7 +10,7 @@ import 'package:librarium/presentation/profile/profile_view.dart';
 import 'package:librarium/presentation/settings/settings_view.dart';
 
 import '../presentation/bottom_bar/bottom_bar_view.dart';
-import '../presentation/home/home_view.dart';
+import '../presentation/dashboard/dashboard_view.dart';
 import '../presentation/login/login_view.dart';
 import '../presentation/register/register_view.dart';
 import '../presentation/resources/string_manager.dart';
@@ -47,7 +47,7 @@ class AppRouteGenerator {
       case AppRoute.loginRoute:
         return MaterialPageRoute(builder: (_) => const LoginView());
       case AppRoute.homeRoute:
-        return MaterialPageRoute(builder: (_) => const HomeView());
+        return MaterialPageRoute(builder: (_) => const DashboardView());
       case AppRoute.bottomBarRoute:
         return MaterialPageRoute(builder: (_) => const BottomBarView());
       case AppRoute.profileRoute:

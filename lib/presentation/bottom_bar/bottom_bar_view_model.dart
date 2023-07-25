@@ -5,7 +5,8 @@ import 'package:librarium/presentation/explore/explore_view.dart';
 import 'package:librarium/presentation/profile/profile_view.dart';
 import 'package:logger/logger.dart';
 
-import '../home/home_view.dart';
+import '../dashboard/dashboard_view.dart';
+
 
 class BottomBarViewModel extends MainViewModel {
   BottomBarViewModel(super.context);
@@ -28,7 +29,7 @@ class BottomBarViewModel extends MainViewModel {
   int selectedIndex = 0;
 
   final List<Widget> viewList = <Widget>[
-    const HomeView(),
+    const DashboardView(),
     const ExploreView(),
     const AddBookView(),
     const ProfileView(),

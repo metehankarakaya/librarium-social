@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:librarium/model/quote.dart';
-import 'package:librarium/presentation/home/home_view_model.dart';
 import 'package:librarium/presentation/resources/string_manager.dart';
 
+import '../dashboard/dashboard_view_model.dart';
+
 class QuoteCard extends StatefulWidget {
-  final HomeViewModel viewModel;
+  final DashboardViewModel viewModel;
   final Quote quote;
   final VoidCallback onLike;
   final VoidCallback onDislike;
