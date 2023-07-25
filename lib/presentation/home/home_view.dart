@@ -115,9 +115,7 @@ class _HomeViewState extends State<HomeView> {
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(topLeft: Radius.circular(20))
               ),
-              onTap: () {
-
-              }
+              onTap: () => viewModel.goAddPostView()
             )
           ],
           child: const Icon(Icons.add),

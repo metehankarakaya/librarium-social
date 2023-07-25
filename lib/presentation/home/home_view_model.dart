@@ -26,6 +26,10 @@ class HomeViewModel extends MainViewModel {
   final UserService _userService = locator<UserService>();
   final QuoteService _quoteService = locator<QuoteService>();
 
+  goAddPostView() {
+    Navigator.pushNamed(context, AppRoute.addPostRoute);
+  }
+
   goAddQuoteView() {
     Navigator.pushNamed(context, AppRoute.addQuoteRoute);
   }
