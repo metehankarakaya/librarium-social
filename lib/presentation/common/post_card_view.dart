@@ -71,7 +71,7 @@ class _PostCardState extends State<PostCard> {
             const Divider(),
             Column(
               children: [
-                if (widget.post.content != null) ... [
+                if (widget.post.content != null && widget.post.content!.isNotEmpty) ... [
                   ListTile(
                     title: Text(
                       "${widget.post.content}",
@@ -83,7 +83,7 @@ class _PostCardState extends State<PostCard> {
                 ],
                 if (widget.post.image != null) ... [
                   Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding: const EdgeInsets.only(left: 16.0, right: 16.0),
                     child: Image.memory(widget.post.image!),
                   )
                 ],
