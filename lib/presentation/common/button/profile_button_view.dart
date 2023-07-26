@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class ProfileButtonView extends StatelessWidget {
   final String content;
   final String count;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   const ProfileButtonView({
     Key? key,

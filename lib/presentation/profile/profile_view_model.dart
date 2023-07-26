@@ -55,10 +55,12 @@ class ProfileViewModel extends MainViewModel {
   List<Quote> foundQuotes = [];
   List<Quote> filteredFoundQuotes = [];
   showQuotesDialog() async {
+    setBusy(true);
     foundQuotes = await _quoteService.findQuotesByUserId(user.id ?? "");
     filteredFoundQuotes = foundQuotes;
     notifyListeners();
     quotesDialog(context, viewModel: this);
+    setBusy(false);
   }
 
   void filterFoundQuotes(String value) {
@@ -78,10 +80,12 @@ class ProfileViewModel extends MainViewModel {
   List<Book> foundBooks = [];
   List<Book> filteredFoundBooks = [];
   showAddedBooksDialog() async {
+    setBusy(true);
     foundBooks = await _bookService.findBooksByUserId(user.id ?? "");
     filteredFoundBooks = foundBooks;
     notifyListeners();
     addedBooksDialog(context, viewModel: this);
+    setBusy(false);
   }
 
   void filterFoundBooks(String value) {
@@ -101,10 +105,12 @@ class ProfileViewModel extends MainViewModel {
   List<User> foundFollowings = [];
   List<User> filteredFoundFollowings = [];
   showFollowingsDialog() async {
+    setBusy(true);
     foundFollowings = await _userService.findFollowingsByUserId(user.id ?? "");
     filteredFoundFollowings = foundFollowings;
     notifyListeners();
     followingsDialog(context, viewModel: this);
+    setBusy(false);
   }
 
   void filterFoundFollowings(String value) {
@@ -126,10 +132,12 @@ class ProfileViewModel extends MainViewModel {
   List<User> foundFollowers = [];
   List<User> filteredFoundFollowers = [];
   showFollowersDialog() async {
+    setBusy(true);
     foundFollowers = await _userService.findFollowersByUserId(user.id ?? "");
     filteredFoundFollowers = foundFollowers;
     notifyListeners();
     followersDialog(context, viewModel: this);
+    setBusy(false);
   }
 
   void filterFoundFollowers(String value) {

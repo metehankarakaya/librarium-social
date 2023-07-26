@@ -68,22 +68,30 @@ class _ProfileViewState extends State<ProfileView> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     ProfileButtonView(
-                      onPressed: () => viewModel.showQuotesDialog(),
+                      onPressed: viewModel.isBusy
+                        ? null
+                        : () => viewModel.showQuotesDialog(),
                       content: AppString.quotes,
                       count: "${viewModel.user.quotes?.length}",
                     ),
                     ProfileButtonView(
-                      onPressed: () => viewModel.showAddedBooksDialog(),
+                      onPressed: viewModel.isBusy
+                        ? null
+                        : () => viewModel.showAddedBooksDialog(),
                       content: AppString.books,
                       count: "${viewModel.user.addedBooks?.length}",
                     ),
                     ProfileButtonView(
-                      onPressed: () => viewModel.showFollowingsDialog(),
+                      onPressed: viewModel.isBusy
+                        ? null
+                        : () => viewModel.showFollowingsDialog(),
                       content: AppString.followings,
                       count: "${viewModel.user.followings?.length}",
                     ),
                     ProfileButtonView(
-                      onPressed: () => viewModel.showFollowersDialog(),
+                      onPressed: viewModel.isBusy
+                        ? null
+                        : () => viewModel.showFollowersDialog(),
                       content: AppString.followers,
                       count: "${viewModel.user.followers?.length}",
                     ),
