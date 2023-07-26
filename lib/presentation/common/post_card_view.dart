@@ -44,6 +44,7 @@ class _PostCardState extends State<PostCard> {
       padding: const EdgeInsets.all(8.0),
       child: Card(
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             ListTile(
               leading: GestureDetector(
@@ -76,8 +77,6 @@ class _PostCardState extends State<PostCard> {
                     title: Text(
                       "${widget.post.content}",
                       textAlign: TextAlign.center,
-                      maxLines: 5,
-                      style: const TextStyle(overflow: TextOverflow.ellipsis),
                     ),
                   )
                 ],
