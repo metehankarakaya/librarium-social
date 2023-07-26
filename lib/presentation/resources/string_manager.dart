@@ -122,7 +122,7 @@ class AppString {
 
   static const String joinDate = "Join date";
 
-  static const String noMoreQuote = "No More Quote!";
+  static const String noMoreContent = "No More Content!";
 
   static const String pageNumber = "Page Number";
   static const String page = "Page: ";

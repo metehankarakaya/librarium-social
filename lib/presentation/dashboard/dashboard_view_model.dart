@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:librarium/core/route_manager.dart';
 import 'package:librarium/injection.dart';
 import 'package:librarium/model/common_model/other_user.dart';
-import 'package:librarium/model/quote.dart';
+import 'package:librarium/model/dashboard_item.dart';
 import 'package:librarium/presentation/common/main_view_model.dart';
+import 'package:librarium/service/dashboard_service/dashboard_service.dart';
 import 'package:librarium/service/quote_service/quote_service.dart';
-import 'package:librarium/service/user_service/user_service.dart';
 import 'package:logger/logger.dart';
 
 class DashboardViewModel extends MainViewModel {
@@ -14,7 +14,7 @@ class DashboardViewModel extends MainViewModel {
   @override
   void start() {
     // TODO: implement start
-    findQuotesByUserAndFollowings();
+    findDashboardItemsByUserAndFollowers();
   }
 
   Logger logger = Logger();
@@ -23,7 +23,7 @@ class DashboardViewModel extends MainViewModel {
     notifyListeners();
   }
 
-  final UserService _userService = locator<UserService>();
+  final DashboardService _dashboardService = locator<DashboardService>();
   final QuoteService _quoteService = locator<QuoteService>();
 
   goAddPostView() {
@@ -35,18 +35,18 @@ class DashboardViewModel extends MainViewModel {
   }
 
   Future<void> refreshDash() async {
-    findQuotesByUserAndFollowings();
+    findDashboardItemsByUserAndFollowers();
   }
 
   int pageNumber = 0;
   bool hasMore = true;
 
-  List<Quote> quotes = [];
-  List<Quote> quotesPart = [];
-  findQuotesByUserAndFollowings() async {
-    quotesPart = await _quoteService.findQuotesByUserAndFollowings(pageNumber);
-    quotes.addAll(quotesPart);
-    if (quotesPart.isEmpty) {
+  List<DashboardItem> dashboardItems = [];
+  List<DashboardItem> dashboardItemsPart = [];
+  findDashboardItemsByUserAndFollowers() async {
+    dashboardItemsPart = await _dashboardService.findDashboardItemsByUserAndFollowers(pageNumber);
+    dashboardItems.addAll(dashboardItemsPart);
+    if (dashboardItemsPart.isEmpty) {
       hasMore = false;
     }
     pageNumber++;

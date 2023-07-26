@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:librarium/presentation/common/post_card_view.dart';
 import 'package:librarium/presentation/dashboard/dashboard_view_model.dart';
 import 'package:librarium/presentation/drawer/drawer_view.dart';
 import 'package:librarium/presentation/resources/color_manager.dart';
@@ -31,7 +32,7 @@ class _DashboardViewState extends State<DashboardView> {
     viewModel.start();
     scrollController.addListener(() {
       if (scrollController.position.maxScrollExtent == scrollController.offset) {
-        viewModel.findQuotesByUserAndFollowings();
+        viewModel.findDashboardItemsByUserAndFollowers();
       }
     });
   }
@@ -69,21 +70,30 @@ class _DashboardViewState extends State<DashboardView> {
             },
             child: ListView.builder(
               controller: scrollController,
-              itemCount: viewModel.quotes.length + 1,
+              itemCount: viewModel.dashboardItems.length + 1,
               itemBuilder: (context, index) {
-                if (index < viewModel.quotes.length) {
-                  return QuoteCard(
-                    viewModel: viewModel,
-                    quote: viewModel.quotes[index],
-                    onLike: () => viewModel.likeQuote(),
-                    onDislike: () => viewModel.dislikeQuote(),
-                    goOtherProfile: () => viewModel.goOtherProfile(),
-                  );
+                if (index < viewModel.dashboardItems.length) {
+                  if (viewModel.dashboardItems[index].type == "quote" && viewModel.dashboardItems[index].quote != null) {
+                    return QuoteCard(
+                      viewModel: viewModel,
+                      quote: viewModel.dashboardItems[index].quote!,
+                      onLike:  () => viewModel.likeQuote(),
+                      onDislike:  () => viewModel.dislikeQuote(),
+                      goOtherProfile: () => viewModel.goOtherProfile(),
+                    );
+                  }
+                  if (viewModel.dashboardItems[index].type == "post" && viewModel.dashboardItems[index].post != null) {
+                    return PostCard(
+                      viewModel: viewModel,
+                      post: viewModel.dashboardItems[index].post!,
+                      goOtherProfile: () => viewModel.goOtherProfile(),
+                    );
+                  }
                 }
                 else {
                   if (!viewModel.hasMore) {
                     return const ListTile(
-                      title: Text(AppString.noMoreQuote, textAlign: TextAlign.center,),
+                      title: Text(AppString.noMoreContent, textAlign: TextAlign.center,),
                     );
                   }
                   else {
