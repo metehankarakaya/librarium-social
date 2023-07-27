@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:librarium/presentation/drawer/drawer_view_model.dart';
 import 'package:librarium/presentation/resources/string_manager.dart';
 import 'package:stacked/stacked.dart';
@@ -48,10 +49,17 @@ class _DrawerViewState extends State<DrawerView> {
                 ),
               ),
               ListTile(
+                leading: const Icon(Icons.drafts),
+                title: const Text(AppString.draft),
+                onTap: () => viewModel.goDraftView(),
+              ),
+              ListTile(
+                leading: const Icon(Icons.add),
                 title: const Text(AppString.addAuthor),
                 onTap: () => viewModel.goAddAuthorView(),
               ),
               ListTile(
+                leading: const Icon(FontAwesomeIcons.arrowRightFromBracket),
                 title: const Text(AppString.logOut),
                 onTap: () => viewModel.showLogOutDialog(),
               ),
