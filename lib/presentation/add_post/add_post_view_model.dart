@@ -73,6 +73,20 @@ class AddPostViewModel extends MainViewModel {
   final Post _post = Post();
   bool addedPost = false;
 
+  addPostToDraft() async {
+    _post.content = postContentController.text.trim();
+    _post.image = pickedImageBytes;
+    notifyListeners();
+    addedPost = await _postService.addPostToDraft(_post);
+    if (addedPost) {
+      showSnackBar(context, AppString.addPostToDraftSuccessful);
+      clearForm();
+    }
+    else {
+      showSnackBar(context, AppString.addPostToDraftFailed);
+    }
+  }
+
   addPost() async {
     //_post.title = titleController.text.trim();
     _post.content = postContentController.text.trim();

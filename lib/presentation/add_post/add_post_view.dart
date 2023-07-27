@@ -39,6 +39,18 @@ class _AddPostViewState extends State<AddPostView> {
                 width: size.width/4,
                 child: ElevatedButton(
                   onPressed: viewModel.checkAll()
+                    ? () => viewModel.addPostToDraft()
+                    : null,
+                  child: const Text(AppString.draft),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
+                width: size.width/4,
+                child: ElevatedButton(
+                  onPressed: viewModel.checkAll()
                     ? () => viewModel.addPost()
                     : null,
                   child: const Text(AppString.post),
