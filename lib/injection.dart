@@ -3,6 +3,7 @@ import 'package:librarium/service/authentication_service/authentication_service.
 import 'package:librarium/service/author_service/author_service.dart';
 import 'package:librarium/service/book_service/book_service.dart';
 import 'package:librarium/service/dashboard_service/dashboard_service.dart';
+import 'package:librarium/service/draft_service/draft_service.dart';
 import 'package:librarium/service/post_service/post_service.dart';
 import 'package:librarium/service/quote_service/quote_service.dart';
 import 'package:librarium/service/user_service/user_service.dart';
@@ -17,4 +18,5 @@ void setupLocator() {
   locator.registerLazySingleton<QuoteService>(() => QuoteService());
   locator.registerLazySingleton<PostService>(() => PostService());
   locator.registerLazySingleton<DashboardService>(() => DashboardService());
+  locator.registerLazySingleton<DraftService>(() => DraftService());
 }
