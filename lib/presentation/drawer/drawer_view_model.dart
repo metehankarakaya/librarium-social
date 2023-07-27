@@ -35,6 +35,10 @@ class DrawerViewModel extends MainViewModel {
     notifyListeners();
   }
 
+  goDraftView() {
+    Navigator.pushNamed(context, AppRoute.draftRoute);
+  }
+
   goAddAuthorView() {
     Navigator.pushNamed(context, AppRoute.addAuthorRoute);
   }

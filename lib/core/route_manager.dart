@@ -4,6 +4,7 @@ import 'package:librarium/presentation/add_book/add_book_view.dart';
 import 'package:librarium/presentation/add_post/add_post_view.dart';
 import 'package:librarium/presentation/add_quote/add_quote_view.dart';
 import 'package:librarium/presentation/book_details/book_details_view.dart';
+import 'package:librarium/presentation/draft/draft_view.dart';
 import 'package:librarium/presentation/explore/explore_view.dart';
 import 'package:librarium/presentation/other_profile/other_profile_view.dart';
 import 'package:librarium/presentation/profile/profile_view.dart';
@@ -28,6 +29,7 @@ class AppRoute {
   static const String addPostRoute = "addPost";
   static const String otherProfileRoute = "otherProfile";
   static const String exploreRoute = "explore";
+  static const String draftRoute = "draft";
 
 }
 
@@ -64,6 +66,8 @@ class AppRouteGenerator {
         return MaterialPageRoute(builder: (_) => const ExploreView());
       case AppRoute.addPostRoute:
         return MaterialPageRoute(builder: (_) => const AddPostView());
+      case AppRoute.draftRoute:
+        return MaterialPageRoute(builder: (_) => const DraftView());
       default:
         return unDefinedRoute();
     }
