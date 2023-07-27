@@ -128,8 +128,11 @@ class AppString {
   static const String page = "Page: ";
   static const String quote = "Quote";
   static const String post = "Post";
+  static const String draft = "Draft";
   static const String addPostSuccessful = "The Post has been successfully added!";
   static const String addPostFailed = "The Post could not be added successfully!";
+  static const String addPostToDraftSuccessful = "The Post has been successfully added to the draft!";
+  static const String addPostToDraftFailed = "The Post could not be added to the draft successfully!";
 
 
 }
