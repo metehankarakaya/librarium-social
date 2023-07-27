@@ -37,6 +37,8 @@ class _DashboardViewState extends State<DashboardView> {
     });
   }
 
+  final GlobalKey<ScaffoldState> _key = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<DashboardViewModel>.reactive(
@@ -44,20 +46,27 @@ class _DashboardViewState extends State<DashboardView> {
         return viewModel;
       },
       builder: (context, viewModel, child) => Scaffold(
+        key: _key,
         backgroundColor: AppColor.bgColor,
+        extendBodyBehindAppBar: true,
         drawer: const DrawerView(),
         appBar: AppBar(
-          title: const Text(AppString.dashboard),
-          centerTitle: true,
+          backgroundColor: AppColor.transparent,
+          elevation: 0,
+          leading: IconButton(
+            onPressed: () => _key.currentState!.openDrawer(),
+            splashRadius: 20,
+            icon: SvgPicture.asset(
+              AppSvg.menuIcon,
+            ),
+          ),
           actions: [
             IconButton(
               onPressed: () {
 
               },
               splashRadius: 20,
-              icon: SvgPicture.asset(
-                AppSvg.messageIcon
-              ),
+              icon: SvgPicture.asset(AppSvg.messageIcon),
             )
           ],
         ),
