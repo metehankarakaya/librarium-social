@@ -1,12 +1,11 @@
 import 'package:librarium/model/post.dart';
 import 'package:librarium/model/quote.dart';
-import 'package:librarium/model/user.dart';
 
 class Draft {
 
   Draft({
     this.id,
-    this.user,
+    this.userId,
     this.quotes,
     this.posts,
     this.capacity,
@@ -16,7 +15,7 @@ class Draft {
   });
 
   String? id;
-  User? user;
+  String? userId;
   List<Quote>? quotes;
   List<Post>? posts;
   int? capacity;
@@ -26,21 +25,24 @@ class Draft {
 
   factory Draft.fromJson(Map<String, dynamic> json) => Draft(
     id: json["id"],
-    user: json["user"] == null ? null : User.fromJson(json["user"]),
-    quotes: json["quotes"] == null ? [] : List<Quote>.from(json["quotes"]!.map((x) => x)),
-    posts: json["posts"] == null ? [] : List<Post>.from(json["posts"]!.map((x) => x)),
+    userId: json["userId"],
+    quotes: json["quotes"] == null ? [] : List<Quote>.from(json["quotes"]!.map((x) => Quote.fromJson(x))),
+    posts: json["posts"] == null ? [] : List<Post>.from(json["posts"]!.map((x) => Post.fromJson(x))),
     capacity: json["capacity"],
     isUpgraded: json["isUpgraded"],
+    upgradedDate: json["upgradedDate"] == null ? null : DateTime.parse(json["upgradedDate"]),
     createdDate: json["createdDate"] == null ? null : DateTime.parse(json["createdDate"]),
   );
 
+
   Map<String, dynamic> toJson() => {
     "id": id,
-    "user": user?.toJson(),
+    "user": userId,
     "quotes": quotes == null ? [] : List<Quote>.from(quotes!.map((x) => x)),
     "posts": posts == null ? [] : List<Post>.from(posts!.map((x) => x)),
     "capacity": capacity,
     "isUpgraded": isUpgraded,
+    "upgradedDate": upgradedDate?.toIso8601String(),
     "createdDate": createdDate?.toIso8601String(),
   };
 
