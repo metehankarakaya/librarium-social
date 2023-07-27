@@ -61,50 +61,47 @@ class _DashboardViewState extends State<DashboardView> {
             )
           ],
         ),
-        body: RefreshIndicator(
-          onRefresh: viewModel.refreshDash,
-          child: NotificationListener<OverscrollIndicatorNotification>(
-            onNotification: (overScroll) {
-              overScroll.disallowIndicator();
-              return true;
-            },
-            child: ListView.builder(
-              controller: scrollController,
-              itemCount: viewModel.dashboardItems.length + 1,
-              itemBuilder: (context, index) {
-                if (index < viewModel.dashboardItems.length) {
-                  if (viewModel.dashboardItems[index].type == "quote" && viewModel.dashboardItems[index].quote != null) {
-                    return QuoteCard(
-                      viewModel: viewModel,
-                      quote: viewModel.dashboardItems[index].quote!,
-                      onLike:  () => viewModel.likeQuote(),
-                      onDislike:  () => viewModel.dislikeQuote(),
-                      goOtherProfile: () => viewModel.goOtherProfile(),
-                    );
-                  }
-                  if (viewModel.dashboardItems[index].type == "post" && viewModel.dashboardItems[index].post != null) {
-                    return PostCard(
-                      viewModel: viewModel,
-                      post: viewModel.dashboardItems[index].post!,
-                      goOtherProfile: () => viewModel.goOtherProfile(),
-                    );
-                  }
+        body: NotificationListener<OverscrollIndicatorNotification>(
+          onNotification: (overScroll) {
+            overScroll.disallowIndicator();
+            return true;
+          },
+          child: ListView.builder(
+            controller: scrollController,
+            itemCount: viewModel.dashboardItems.length + 1,
+            itemBuilder: (context, index) {
+              if (index < viewModel.dashboardItems.length) {
+                if (viewModel.dashboardItems[index].type == "quote" && viewModel.dashboardItems[index].quote != null) {
+                  return QuoteCard(
+                    viewModel: viewModel,
+                    quote: viewModel.dashboardItems[index].quote!,
+                    onLike:  () => viewModel.likeQuote(),
+                    onDislike:  () => viewModel.dislikeQuote(),
+                    goOtherProfile: () => viewModel.goOtherProfile(),
+                  );
+                }
+                if (viewModel.dashboardItems[index].type == "post" && viewModel.dashboardItems[index].post != null) {
+                  return PostCard(
+                    viewModel: viewModel,
+                    post: viewModel.dashboardItems[index].post!,
+                    goOtherProfile: () => viewModel.goOtherProfile(),
+                  );
+                }
+              }
+              else {
+                if (!viewModel.hasMore) {
+                  return const ListTile(
+                    title: Text(AppString.noMoreContent, textAlign: TextAlign.center,),
+                  );
                 }
                 else {
-                  if (!viewModel.hasMore) {
-                    return const ListTile(
-                      title: Text(AppString.noMoreContent, textAlign: TextAlign.center,),
-                    );
-                  }
-                  else {
-                    return const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Center(child: CircularProgressIndicator()),
-                    );
-                  }
+                  return const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Center(child: CircularProgressIndicator()),
+                  );
                 }
-              },
-            ),
+              }
+            },
           ),
         ),
         floatingActionButton: SpeedDial(

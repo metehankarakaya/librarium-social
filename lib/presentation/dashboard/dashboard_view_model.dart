@@ -34,9 +34,6 @@ class DashboardViewModel extends MainViewModel {
     Navigator.pushNamed(context, AppRoute.addQuoteRoute);
   }
 
-  Future<void> refreshDash() async {
-    findDashboardItemsByUserAndFollowers();
-  }
 
   int pageNumber = 0;
   bool hasMore = true;
