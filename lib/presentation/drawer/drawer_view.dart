@@ -14,6 +14,7 @@ class DrawerView extends StatefulWidget {
 class _DrawerViewState extends State<DrawerView> {
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.sizeOf(context);
     return ViewModelBuilder<DrawerViewModel>.reactive(
       viewModelBuilder: () {
         DrawerViewModel viewModel = DrawerViewModel(context);
@@ -24,30 +25,20 @@ class _DrawerViewState extends State<DrawerView> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              DrawerHeader(
-                child: Column(
-                  children: [
-                    Expanded(
-                      child: ListTile(
-                        title: Text(viewModel.firstName ?? ""),
-                      ),
-                    ),
-                    Expanded(
-                      child: ListTile(
-                        title: Text(viewModel.lastName ?? ""),
-                      ),
-                    ),
-                    Expanded(
-                      child: ListTile(
-                        title: Text(
-                          "@${viewModel.username}" ?? "",
-                          style: Theme.of(context).textTheme.headlineMedium,
-                        ),
-                      ),
-                    ),
-                  ],
+              SizedBox(height: size.height/128,),
+              SafeArea(
+                child: CircleAvatar(
+                  radius: 100,
+                  backgroundImage: viewModel.user.avatar != null
+                    ? MemoryImage(viewModel.user.avatar!)
+                    : null,
                 ),
               ),
+              ListTile(
+                title: Text("@${viewModel.user.username}"),
+                subtitle: Text("${viewModel.user.firstName} ${viewModel.user.lastName}"),
+              ),
+              const Divider(),
               ListTile(
                 leading: const Icon(Icons.drafts),
                 title: const Text(AppString.draft),

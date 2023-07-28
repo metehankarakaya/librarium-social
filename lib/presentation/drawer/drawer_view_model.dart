@@ -4,6 +4,9 @@ import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../core/route_manager.dart';
+import '../../injection.dart';
+import '../../model/user.dart';
+import '../../service/user_service/user_service.dart';
 import '../common/dialog/log_out_dialog.dart';
 import '../common/snack_bar/show_snack_bar.dart';
 import '../resources/string_manager.dart';
@@ -14,7 +17,7 @@ class DrawerViewModel extends MainViewModel {
   @override
   void start() {
     // TODO: implement start
-    readPrefs();
+    getUser();
   }
 
   Logger logger = Logger();
@@ -23,15 +26,11 @@ class DrawerViewModel extends MainViewModel {
     notifyListeners();
   }
 
-  String? username;
-  String? firstName;
-  String? lastName;
+  final UserService _userService = locator<UserService>();
 
-  readPrefs() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    username = prefs.getString("username");
-    firstName = prefs.getString("fName");
-    lastName = prefs.getString("lName");
+  User user = User();
+  getUser() async {
+    user = await _userService.findUserDetail();
     notifyListeners();
   }
 
