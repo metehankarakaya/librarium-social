@@ -106,7 +106,7 @@ class _AddAuthorViewModelState extends State<AddAuthorView> {
                 style: ElevatedButton.styleFrom(
                   fixedSize: Size(size.width/2, size.height/16),
                 ),
-                child: const Text(AppString.register),
+                child: const Text(AppString.addAuthor),
               ),
             ],
           ),
