@@ -7,6 +7,7 @@ class Post {
 
   Post({
     this.id,
+    this.tempId,
     this.title,
     this.content,
     this.image,
@@ -15,6 +16,7 @@ class Post {
   });
 
   String? id;
+  String? tempId;
   String? title;
   String? content;
   Uint8List? image;
@@ -23,6 +25,7 @@ class Post {
 
   factory Post.fromJson(Map<String, dynamic> json) => Post(
     id: json["id"],
+    tempId: json["tempId"],
     title: json["title"],
     content: json["content"],
     image: json["image"] == null ? null : base64.decode(json["image"]),
@@ -32,6 +35,7 @@ class Post {
 
   Map<String, dynamic> toJson() => {
     "id": id,
+    "tempId": tempId,
     "title": title,
     "content": content,
     "image": image != null ? base64Encode(image!) : null,
