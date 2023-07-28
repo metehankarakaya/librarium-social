@@ -16,7 +16,9 @@ class DraftService extends MainService {
 
   static const String findMyDraftApi = "/private-app-api/find/my/draft";
   static const String deletePostInDraftApi = "/private-app-api/delete/post/in/draft/";
+  static const String deleteQuoteInDraftApi = "/private-app-api/delete/quote/in/draft/";
   static const String sharePostInDraftApi = "/private-app-api/share/post/in/draft/";
+  static const String shareQuoteInDraftApi = "/private-app-api/share/quote/in/draft/";
 
   Future<Draft> findMyDraft() async {
     String api = "${Environment().apiUrl}$findMyDraftApi";
@@ -40,7 +42,7 @@ class DraftService extends MainService {
   }
 
   Future<bool> deletePostInDraft(String tempId) async {
-    String api = "${Environment().apiUrl}$sharePostInDraftApi$tempId";
+    String api = "${Environment().apiUrl}$deletePostInDraftApi$tempId";
 
     final SharedPreferences prefs = await getPrefs();
 
@@ -78,6 +80,48 @@ class DraftService extends MainService {
     }
     else {
       return throw Exception("Service 'sharePostInDraft' failed with statusCode: ${response.statusCode}");
+    }
+  }
+
+  Future<bool> deleteQuoteInDraft(String tempId) async {
+    String api = "${Environment().apiUrl}$deleteQuoteInDraftApi$tempId";
+
+    final SharedPreferences prefs = await getPrefs();
+
+    final response = await http.get(
+      Uri.parse(api),
+      headers: <String, String>{
+        "Content-Type": "application/json",
+        "Accept": "application/json; charset=UTF-8",
+        HttpHeaders.authorizationHeader: prefs.getString("token").toString()
+      },
+    );
+    if (response.statusCode == 200) {
+      return bool.tryParse(response.body) ?? false;
+    }
+    else {
+      return throw Exception("Service 'deleteQuoteInDraft' failed with statusCode: ${response.statusCode}");
+    }
+  }
+
+  Future<bool> shareQuoteInDraft(String tempId) async {
+    String api = "${Environment().apiUrl}$shareQuoteInDraftApi$tempId";
+
+    final SharedPreferences prefs = await getPrefs();
+
+    final response = await http.get(
+      Uri.parse(api),
+      headers: <String, String>{
+        "Content-Type": "application/json",
+        "Accept": "application/json; charset=UTF-8",
+        HttpHeaders.authorizationHeader: prefs.getString("token").toString()
+      },
+    );
+    if (response.statusCode == 200) {
+      return bool.tryParse(response.body) ?? false;
+    }
+    else {
+      return throw Exception("Service 'shareQuoteInDraft' failed with statusCode: ${response.statusCode}");
     }
   }
 
