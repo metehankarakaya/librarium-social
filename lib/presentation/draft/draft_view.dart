@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:librarium/presentation/common/draft_cards/draft_post_card_view.dart';
+import 'package:librarium/presentation/common/draft_cards/quote_draft_card_view.dart';
 import 'package:librarium/presentation/draft/draft_view_model.dart';
 import 'package:librarium/presentation/resources/color_manager.dart';
 import 'package:librarium/presentation/resources/string_manager.dart';
@@ -99,10 +100,18 @@ class _DraftViewState extends State<DraftView> {
                           ),
                           SliverList(
                             delegate: SliverChildBuilderDelegate(
-                              childCount: 100,
-                              (context, index) => ListTile(
-                                title: Text("Quote: $index"),
-                              )
+                              childCount: viewModel.draft.quotes?.length,
+                              (context, index) {
+                                if (viewModel.draft.quotes?[index] != null) {
+                                  return DraftQuoteCard(
+                                    viewModel: viewModel,
+                                    quote: viewModel.reversedQuoteList[index],
+                                    onLike:  () {},
+                                    onDislike:  () {},
+                                    goOtherProfile: () => viewModel.goOtherProfile(),
+                                  );
+                                }
+                              }
                             ),
                           )
                         ],
