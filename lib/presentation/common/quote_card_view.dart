@@ -38,7 +38,7 @@ class _QuoteCardState extends State<QuoteCard> {
   formatCreatedDate() {
     setState(() {
       DateTime createdDate = DateTime.parse("${widget.quote.createdDate}");
-      formattedCreatedDate = DateFormat("d MMMM").format(createdDate);
+      formattedCreatedDate = DateFormat("d MMMM hh.mm a").format(createdDate);
     });
   }
 
