@@ -36,6 +36,7 @@ class _OtherProfileViewState extends State<OtherProfileView> {
             onPressed: () {
               Navigator.pop(context);
             },
+            splashRadius: 20,
             icon: Icon(Icons.arrow_back_ios, color: AppColor.blue900,),
           ),
           backgroundColor: AppColor.transparent,

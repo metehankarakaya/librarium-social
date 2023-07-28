@@ -23,6 +23,13 @@ class _SettingsViewModelState extends State<SettingsView> {
         appBar: AppBar(
           title: const Text("Settings View"),
           centerTitle: true,
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            splashRadius: 20,
+            icon: const Icon(Icons.arrow_back_ios),
+          ),
           actions: [
             IconButton(
               onPressed: () {

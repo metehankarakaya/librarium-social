@@ -24,6 +24,13 @@ class _AddAuthorViewModelState extends State<AddAuthorView> {
         appBar: AppBar(
           title: const Text(AppString.addAuthor),
           centerTitle: true,
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            splashRadius: 20,
+            icon: const Icon(Icons.arrow_back_ios),
+          ),
           actions: [
             IconButton(
               onPressed: () => viewModel.showAddBookRules(),

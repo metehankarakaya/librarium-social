@@ -40,6 +40,13 @@ class _DraftViewState extends State<DraftView> {
                       snap: true,
                       pinned: true,
                       floating: true,
+                      leading: IconButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        splashRadius: 20,
+                        icon: const Icon(Icons.arrow_back_ios),
+                      ),
                       title: viewModel.draft.capacity != null ? Text("${AppString.draft} (${viewModel.draftSize}/${viewModel.draft.capacity})") : const Text(AppString.draft),
                       centerTitle: true,
                       forceElevated: innerBoxIsScrolled,
