@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:librarium/model/book.dart';
 import 'package:librarium/model/quote.dart';
+import 'package:librarium/model/user.dart';
 import 'package:librarium/presentation/common/dialog/rules_dialog/show_add_quote_rules_dialog.dart';
 import 'package:librarium/presentation/common/main_view_model.dart';
 import 'package:librarium/service/quote_service/quote_service.dart';
+import 'package:librarium/service/user_service/user_service.dart';
 import 'package:logger/logger.dart';
 
 import '../../injection.dart';
@@ -18,6 +20,7 @@ class AddQuoteViewModel extends MainViewModel {
   @override
   void start() {
     // TODO: implement start
+    getAvatar();
     findAllBooks();
   }
 
@@ -40,11 +43,22 @@ class AddQuoteViewModel extends MainViewModel {
     return true;
   }
 
+  final UserService _userService = locator<UserService>();
   final BookService _bookService = locator<BookService>();
   final QuoteService _quoteService = locator<QuoteService>();
 
   TextEditingController contentController = TextEditingController();
   TextEditingController pageNumberController = TextEditingController();
+
+  goBack() {
+    Navigator.pop(context);
+  }
+
+  User user = User();
+  getAvatar() async {
+    user = await _userService.findUserDetail();
+    notifyListeners();
+  }
 
   showAddQuoteRules() {
     showAddQuoteRulesDialog(context);

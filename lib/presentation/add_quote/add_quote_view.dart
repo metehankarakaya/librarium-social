@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:librarium/presentation/add_quote/add_quote_view_model.dart';
 import 'package:librarium/presentation/resources/color_manager.dart';
+import 'package:librarium/presentation/resources/string_manager.dart';
 import 'package:stacked/stacked.dart';
-
-import '../resources/string_manager.dart';
 
 class AddQuoteView extends StatefulWidget {
   const AddQuoteView({Key? key}) : super(key: key);
@@ -26,75 +25,116 @@ class _AddQuoteViewState extends State<AddQuoteView> {
       builder: (context, viewModel, child) => Scaffold(
         backgroundColor: AppColor.bgColor,
         appBar: AppBar(
-          title: const Text(AppString.addQuote),
-          centerTitle: true,
+          backgroundColor: AppColor.transparent,
+          elevation: 0,
+          leading: IconButton(
+            onPressed: () => viewModel.goBack(),
+            splashRadius: 20,
+            icon: Icon(Icons.close, color: AppColor.blue900,),
+          ),
           actions: [
-            IconButton(
-              onPressed: () => viewModel.showAddQuoteRules(),
-              splashRadius: 20,
-              icon: const Icon(Icons.info_outline,),
-            ),
-          ],
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              OutlinedButton(
-                onPressed: () => viewModel.showSelectBookDialog(),
-                style: ElevatedButton.styleFrom(
-                  fixedSize: Size(size.width, size.height/12),
-                ),
-                child: Text(viewModel.selectedBook != null ? "${viewModel.selectedBook?.title}": AppString.selectBook),
-              ),
-              TextFormField(
-                controller: viewModel.contentController,
-                onChanged: (val) => viewModel.listenToChanges(),
-                maxLines: 15,
-                minLines: 1,
-                maxLength: 2000,
-                decoration: const InputDecoration(
-                  label: Text(AppString.content),
-                  prefixIcon: Icon(Icons.keyboard_arrow_right_sharp)
-                ),
-              ),
-              TextFormField(
-                controller: viewModel.pageNumberController,
-                onChanged: (val) => viewModel.listenToChanges(),
-                keyboardType: TextInputType.number,
-                inputFormatters: <TextInputFormatter>[
-                  FilteringTextInputFormatter.digitsOnly
-                ], //
-                decoration: const InputDecoration(
-                  label: Text(AppString.pageNumber),
-                  prefixIcon: Icon(Icons.keyboard_arrow_right_sharp)
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: ElevatedButton(
-                  onPressed: viewModel.checkAll()
-                    ? () => viewModel.addQuote()
-                    : null,
-                  style: ElevatedButton.styleFrom(
-                    fixedSize: Size(size.width/2, size.height/16),
-                  ),
-                  child: const Text(AppString.send),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
+                width: size.width/4,
                 child: ElevatedButton(
                   onPressed: viewModel.checkAll()
                     ? () => viewModel.addQuoteToDraft()
                     : null,
-                  style: ElevatedButton.styleFrom(
-                    fixedSize: Size(size.width/2, size.height/16),
-                  ),
-                  child: const Text("Draft"),
+                  child: const Text(AppString.draft),
                 ),
               ),
-            ],
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
+                width: size.width/4,
+                child: ElevatedButton(
+                  onPressed: viewModel.checkAll()
+                    ? () => viewModel.addQuote()
+                    : null,
+                  child: const Text(AppString.quote),
+                ),
+              ),
+            )
+          ],
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: NotificationListener<OverscrollIndicatorNotification>(
+            onNotification: (overScroll) {
+              overScroll.disallowIndicator();
+              return true;
+            },
+            child: ListView(
+              physics: const BouncingScrollPhysics(),
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: CircleAvatar(
+                          radius: 30,
+                          backgroundImage: viewModel.user.avatar != null
+                            ? MemoryImage(viewModel.user.avatar!)
+                            : null,
+                        ),
+                      ),
+                      Expanded(
+                        child: ListTile(
+                          title: Text(
+                            "@${viewModel.user.username}",
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          subtitle: Text("${viewModel.user.firstName} ${viewModel.user.lastName}"),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                TextFormField(
+                  autofocus: true,
+                  controller: viewModel.contentController,
+                  onChanged: (val) => viewModel.listenToChanges(),
+                  maxLines: null,
+                  maxLength: 2000,
+                  decoration: InputDecoration(
+                    floatingLabelBehavior: FloatingLabelBehavior.always,
+                    label: const Text(AppString.quote),
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: AppColor.blue900
+                      ),
+                    )
+                  ),
+                ),
+                TextFormField(
+                  controller: viewModel.pageNumberController,
+                  onChanged: (val) => viewModel.listenToChanges(),
+                  keyboardType: TextInputType.number,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.digitsOnly
+                  ], //
+                  decoration: const InputDecoration(
+                    label: Text(AppString.pageNumber),
+                    prefixIcon: Icon(Icons.keyboard_arrow_right_sharp)
+                  ),
+                ),
+                SizedBox(height: size.height/32,),
+                OutlinedButton(
+                  onPressed: () => viewModel.showSelectBookDialog(),
+                  style: ElevatedButton.styleFrom(
+                    side: BorderSide(
+                      color: AppColor.indigo400
+                    ),
+                    fixedSize: Size(size.width, size.height/12),
+                  ),
+                  child: Text(viewModel.selectedBook != null ? "${viewModel.selectedBook?.title}": AppString.selectBook),
+                ),
+              ],
+            ),
           ),
         ),
       ),
