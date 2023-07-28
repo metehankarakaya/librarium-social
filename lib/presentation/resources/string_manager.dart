@@ -139,6 +139,8 @@ class AppString {
   static const String addPostFailed = "The Post could not be added successfully!";
   static const String addPostToDraftSuccessful = "The Post has been successfully added to the draft!";
   static const String addPostToDraftFailed = "The Post could not be added to the draft successfully!";
+  static const String addQuoteToDraftSuccessful = "The Quote has been successfully added to the draft!";
+  static const String addQuoteToDraftFailed = "The Quote could not be added to the draft successfully!";
 
 
 }
