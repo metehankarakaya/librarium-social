@@ -88,6 +88,21 @@ class AddQuoteViewModel extends MainViewModel {
   final Quote _quote = Quote();
   bool addedQuote = false;
 
+  addQuoteToDraft() async {
+    _quote.content = contentController.text.trim();
+    _quote.book = selectedBook;
+    _quote.pageNumber = int.parse(pageNumberController.text.trim());
+    notifyListeners();
+    addedQuote = await _quoteService.addQuoteToDraft(_quote);
+    if (addedQuote) {
+      showSnackBar(context, AppString.addQuoteToDraftSuccessful);
+      clearForm();
+    }
+    else {
+      showSnackBar(context, AppString.addQuoteToDraftFailed);
+    }
+  }
+
   addQuote() async {
     _quote.content = contentController.text.trim();
     _quote.book = selectedBook;

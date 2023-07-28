@@ -82,6 +82,18 @@ class _AddQuoteViewState extends State<AddQuoteView> {
                   child: const Text(AppString.send),
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: ElevatedButton(
+                  onPressed: viewModel.checkAll()
+                    ? () => viewModel.addQuoteToDraft()
+                    : null,
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: Size(size.width/2, size.height/16),
+                  ),
+                  child: const Text("Draft"),
+                ),
+              ),
             ],
           ),
         ),
