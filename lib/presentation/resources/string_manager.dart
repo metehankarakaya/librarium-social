@@ -129,6 +129,11 @@ class AppString {
   static const String quote = "Quote";
   static const String post = "Post";
   static const String draft = "Draft";
+  static const String draftDate = "Date saved in drafts";
+  static const String successfullyDeleted = "Successfully deleted";
+  static const String moreSettings = "More Settings";
+  static const String shareNow = "Share Now";
+  static const String delete = "Delete";
   static const String addPostSuccessful = "The Post has been successfully added!";
   static const String addPostFailed = "The Post could not be added successfully!";
   static const String addPostToDraftSuccessful = "The Post has been successfully added to the draft!";
