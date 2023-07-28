@@ -30,7 +30,7 @@ class _DraftPostCardState extends State<DraftPostCard> {
   formatCreatedDate() {
     setState(() {
       DateTime createdDate = DateTime.parse("${widget.post.createdDate}");
-      formattedCreatedDate = DateFormat("d MMMM").format(createdDate);
+      formattedCreatedDate = DateFormat("d MMMM hh.mm").format(createdDate);
     });
   }
 

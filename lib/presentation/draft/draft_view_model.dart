@@ -1,4 +1,5 @@
 import 'package:librarium/model/draft.dart';
+import 'package:librarium/model/post.dart';
 import 'package:librarium/presentation/common/main_view_model.dart';
 import 'package:librarium/service/draft_service/draft_service.dart';
 import 'package:logger/logger.dart';
@@ -27,10 +28,14 @@ class DraftViewModel extends MainViewModel {
 
   final DraftService _draftService = locator<DraftService>();
 
+  int draftSize = 0;
   Draft draft = Draft();
+  List<Post> reversedPostList = [];
 
   findMyDraft() async {
     draft = await _draftService.findMyDraft();
+    draftSize = draft.posts!.length + draft.quotes!.length;
+    reversedPostList = List.from(draft.posts!.reversed);
     notifyListeners();
   }
 

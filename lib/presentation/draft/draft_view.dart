@@ -40,7 +40,7 @@ class _DraftViewState extends State<DraftView> {
                       snap: true,
                       pinned: true,
                       floating: true,
-                      title: const Text(AppString.draft),
+                      title: viewModel.draft.capacity != null ? Text("${AppString.draft} (${viewModel.draftSize}/${viewModel.draft.capacity})") : const Text(AppString.draft),
                       centerTitle: true,
                       forceElevated: innerBoxIsScrolled,
                       bottom: TabBar(
@@ -73,7 +73,7 @@ class _DraftViewState extends State<DraftView> {
                                 if (viewModel.draft.posts?[index] != null) {
                                   return DraftPostCard(
                                     viewModel: viewModel,
-                                    post: viewModel.draft.posts![index],
+                                    post: viewModel.reversedPostList[index],
                                   );
                                 }
                               }
