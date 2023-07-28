@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:librarium/model/post.dart';
 import 'package:librarium/presentation/draft/draft_view_model.dart';
+import 'package:librarium/presentation/resources/string_manager.dart';
 
 class DraftPostCard extends StatefulWidget {
   final DraftViewModel viewModel;
@@ -58,14 +59,27 @@ class _DraftPostCardState extends State<DraftPostCard> {
               subtitle: Text(
                 "${widget.post.user!.firstName} ${widget.post.user!.lastName}",
               ),
-              trailing: IconButton(
-                onPressed: () {
-
-                },
-                splashRadius: 20,
-                tooltip: "More Settings", //delete, share
+              trailing: PopupMenuButton(
                 icon: const Icon(Icons.more_horiz),
-              ),
+                tooltip: AppString.moreSettings,
+                splashRadius: 20,
+                itemBuilder: (context) => [
+                  PopupMenuItem(
+                    onTap: () {},
+                    child: const ListTile(
+                      leading: Icon(Icons.share),
+                      title: Text(AppString.shareNow),
+                    ),
+                  ),
+                  PopupMenuItem(
+                    onTap: () => widget.viewModel.deletePostInDraft(widget.post.tempId ?? ""),
+                    child: const ListTile(
+                      leading: Icon(Icons.delete),
+                      title: Text(AppString.delete),
+                    ),
+                  ),
+                ],
+              )
             ),
             const Divider(),
             Column(
@@ -85,7 +99,7 @@ class _DraftPostCardState extends State<DraftPostCard> {
                   )
                 ],
                 ListTile(
-                  subtitle: Text("Date saved in drafts: $formattedCreatedDate", textAlign: TextAlign.end,),
+                  subtitle: Text("${AppString.draftDate}: $formattedCreatedDate", textAlign: TextAlign.end,),
                 ),
               ],
             )

@@ -1,6 +1,8 @@
 import 'package:librarium/model/draft.dart';
 import 'package:librarium/model/post.dart';
 import 'package:librarium/presentation/common/main_view_model.dart';
+import 'package:librarium/presentation/common/snack_bar/show_snack_bar.dart';
+import 'package:librarium/presentation/resources/string_manager.dart';
 import 'package:librarium/service/draft_service/draft_service.dart';
 import 'package:logger/logger.dart';
 
@@ -37,6 +39,16 @@ class DraftViewModel extends MainViewModel {
     draftSize = draft.posts!.length + draft.quotes!.length;
     reversedPostList = List.from(draft.posts!.reversed);
     notifyListeners();
+  }
+
+  bool isDeleted = false;
+  deletePostInDraft(String tempId) async {
+    isDeleted = await _draftService.deletePostInDraft(tempId);
+    notifyListeners();
+    if (isDeleted) {
+      showSnackBar(context, AppString.successfullyDeleted);
+      findMyDraft();
+    }
   }
 
 
