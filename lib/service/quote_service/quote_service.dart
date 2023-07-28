@@ -19,6 +19,7 @@ class QuoteService extends MainService {
   static const String likeQuoteApi = "/private-app-api/like/quote/";
   static const String dislikeQuoteApi = "/private-app-api/dislike/quote/";
   static const String findQuotesByUserIdApi = "/private-app-api/find/quotes/by/user/id/";
+  static const String addQuoteToDraftApi = "/private-app-api/add/quote/to/draft";
 
   Future<bool> addQuote(Quote quote) async {
     String api = "${Environment().apiUrl}$addQuoteApi";
@@ -127,6 +128,28 @@ class QuoteService extends MainService {
     }
     else {
       return throw Exception("Service 'findQuotesByUserId' failed with statusCode: ${response.statusCode}");
+    }
+  }
+
+  Future<bool> addQuoteToDraft(Quote quote) async {
+    String api = "${Environment().apiUrl}$addQuoteToDraftApi";
+
+    final SharedPreferences prefs = await getPrefs();
+
+    final response = await http.post(
+      Uri.parse(api),
+      headers: <String, String>{
+        "Content-Type": "application/json",
+        "Accept": "application/json; charset=UTF-8",
+        HttpHeaders.authorizationHeader: prefs.getString("token").toString()
+      },
+      body: jsonEncode(quote.toJson())
+    );
+    if (response.statusCode == 200) {
+      return bool.tryParse(response.body) ?? false;
+    }
+    else {
+      return throw Exception("Service 'addQuoteToDraft' failed with statusCode: ${response.statusCode}");
     }
   }
 
