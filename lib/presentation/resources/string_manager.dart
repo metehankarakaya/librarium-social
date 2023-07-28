@@ -131,6 +131,7 @@ class AppString {
   static const String draft = "Draft";
   static const String draftDate = "Date saved in drafts";
   static const String successfullyDeleted = "Successfully deleted";
+  static const String successfullyShared = "Successfully shared";
   static const String moreSettings = "More Settings";
   static const String shareNow = "Share Now";
   static const String delete = "Delete";

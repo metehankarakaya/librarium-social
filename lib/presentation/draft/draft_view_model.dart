@@ -51,5 +51,15 @@ class DraftViewModel extends MainViewModel {
     }
   }
 
+  bool isShared = false;
+  sharePostInDraft(String tempId) async {
+    isShared = await _draftService.sharePostInDraft(tempId);
+    notifyListeners();
+    if (isShared) {
+      showSnackBar(context, AppString.successfullyShared);
+      findMyDraft();
+    }
+  }
+
 
 }

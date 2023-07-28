@@ -65,7 +65,7 @@ class _DraftPostCardState extends State<DraftPostCard> {
                 splashRadius: 20,
                 itemBuilder: (context) => [
                   PopupMenuItem(
-                    onTap: () {},
+                    onTap: () => widget.viewModel.sharePostInDraft(widget.post.tempId ?? ""),
                     child: const ListTile(
                       leading: Icon(Icons.share),
                       title: Text(AppString.shareNow),

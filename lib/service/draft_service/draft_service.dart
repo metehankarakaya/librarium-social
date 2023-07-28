@@ -16,6 +16,7 @@ class DraftService extends MainService {
 
   static const String findMyDraftApi = "/private-app-api/find/my/draft";
   static const String deletePostInDraftApi = "/private-app-api/delete/post/in/draft/";
+  static const String sharePostInDraftApi = "/private-app-api/share/post/in/draft/";
 
   Future<Draft> findMyDraft() async {
     String api = "${Environment().apiUrl}$findMyDraftApi";
@@ -39,7 +40,7 @@ class DraftService extends MainService {
   }
 
   Future<bool> deletePostInDraft(String tempId) async {
-    String api = "${Environment().apiUrl}$deletePostInDraftApi$tempId";
+    String api = "${Environment().apiUrl}$sharePostInDraftApi$tempId";
 
     final SharedPreferences prefs = await getPrefs();
 
@@ -56,6 +57,27 @@ class DraftService extends MainService {
     }
     else {
       return throw Exception("Service 'deletePostInDraft' failed with statusCode: ${response.statusCode}");
+    }
+  }
+
+  Future<bool> sharePostInDraft(String tempId) async {
+    String api = "${Environment().apiUrl}$sharePostInDraftApi$tempId";
+
+    final SharedPreferences prefs = await getPrefs();
+
+    final response = await http.get(
+      Uri.parse(api),
+      headers: <String, String>{
+        "Content-Type": "application/json",
+        "Accept": "application/json; charset=UTF-8",
+        HttpHeaders.authorizationHeader: prefs.getString("token").toString()
+      },
+    );
+    if (response.statusCode == 200) {
+      return bool.tryParse(response.body) ?? false;
+    }
+    else {
+      return throw Exception("Service 'sharePostInDraft' failed with statusCode: ${response.statusCode}");
     }
   }
 
