@@ -5,6 +5,7 @@ class Quote {
 
   Quote({
     this.id,
+    this.tempId,
     this.content,
     this.user,
     this.book,
@@ -15,6 +16,7 @@ class Quote {
   });
 
   String? id;
+  String? tempId;
   String? content;
   User? user;
   Book? book;
@@ -25,6 +27,7 @@ class Quote {
 
   factory Quote.fromJson(Map<String, dynamic> json) => Quote(
     id: json["id"],
+    tempId: json["tempId"],
     content: json["content"],
     user: json["user"] == null ? null : User.fromJson(json["user"]),
     book: json["book"] == null ? null : Book.fromJson(json["book"]),
@@ -36,6 +39,7 @@ class Quote {
 
   Map<String, dynamic> toJson() => {
     "id": id,
+    "tempId": tempId,
     "content": content,
     "user": user?.toJson(),
     "book": book?.toJson(),
