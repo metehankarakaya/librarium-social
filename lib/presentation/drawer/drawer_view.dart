@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:librarium/presentation/drawer/drawer_view_model.dart';
+import 'package:librarium/presentation/resources/color_manager.dart';
 import 'package:librarium/presentation/resources/string_manager.dart';
 import 'package:stacked/stacked.dart';
 
@@ -29,6 +30,7 @@ class _DrawerViewState extends State<DrawerView> {
               SafeArea(
                 child: CircleAvatar(
                   radius: 100,
+                  backgroundColor: AppColor.transparent,
                   backgroundImage: viewModel.user.avatar != null
                     ? MemoryImage(viewModel.user.avatar!)
                     : null,
